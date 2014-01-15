@@ -1,0 +1,1 @@
+Little Plane Finder is an Angular app that helps you sort through airplanes based on different characteristics.
