@@ -1,8 +1,76 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	font-family: 'Open Sans', sans-serif;
+	color: #333;
+	margin: 0;
 }
 
 a {
   color: #00B7FF;
+}
+
+header {
+	padding: 30px;
+	display: inline-block;
+}
+
+.container {
+	display: inline-block;
+	padding: 0 30px;
+}
+
+.clr {
+	clear: both;
+}
+
+h1 {
+	color: #222;
+}
+
+h1#brand {
+	color: #fff;
+	margin: 0;
+	background: #1C4A86;
+	padding: 5px 10px;
+	font-size: 24px;
+	font-weight: 600;
+}
+
+.form-group {
+	display: inline-block;
+	float: left;
+	margin-right: 10px;
+}
+
+.form-group label {
+	font-size: 14px;
+	font-weight: 600;
+}
+
+table#search-table {
+	border-spacing: 0px;
+    border-collapse: separate;
+    font-size: 12px;
+}
+
+table#search-table th {
+	text-align: left;
+	vertical-align: bottom;
+	color: #333;
+}
+
+table#search-table thead th, table#search-table tbody tr td {
+	padding: 5px 10px 5px;
+	border: 0;
+}
+
+table#search-table tbody {
+	white-space: nowrap;
+}
+
+table#search-table tbody tr:hover {
+	background: #DDD;
+}
+
+th.highlightCell, td.highlightCell {
+	background: #DDD;
 }

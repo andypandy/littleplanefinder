@@ -1,52 +1,19 @@
-var myApp = angular.module('myApp', []);
+//var myApp = angular.module('myApp', []);
 
-function MyCtrl($scope) {
-  //Horsepower filter
-  $scope.horsepowerFilter = function (plane) {
-    var ret = true;
+// Declare app level module which depends on filters, and services
+angular.module('myApp', []).
+  config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+    $routeProvider.
+    when('/', {
+    	templateUrl: 'partial/search'
+    }).
+    when('/create', {
+    	templateUrl: 'partial/create'
+    }).
+    when('/happy', {
+    	templateUrl: 'partial/happy'
+    }).
+   	otherwise({redirectTo: '/'});
 
-    if ($scope.minHorsepower && $scope.minHorsepower > plane.horsepower) {
-      ret = false;
-    }
-
-    if ($scope.maxHorsepower && $scope.maxHorsepower < plane.horsepower) {
-      ret = false;
-    }
-
-    return ret;
-  };
-
-
-  //Planes db
-  $scope.planes = [{
-      'make': 'Piper',
-      'model': 'Arrow',
-      'modelNumber': 'PA-28R-180',
-      'horsepower': 180,
-      'gear': 'retractable',
-    }, {
-      'make': 'Piper',
-      'model': 'Arrow',
-      'modelNumber': 'PA-28R-200',
-      'horsepower': 200,
-      'gear': 'retractable',
-    }, {
-      'make': 'Piper',
-      'model': 'Arrow III',
-      'modelNumber': 'PA-28R-201',
-      'horsepower': 200,
-      'gear': 'retractable',
-    }, {
-      'make': 'Piper',
-      'model': 'Cherokee',
-      'modelNumber': 'PA-28-150',
-      'horsepower': 150,
-      'gear': 'fixed',
-    }, {
-      'make': 'Piper',
-      'model': 'Cherokee',
-      'modelNumber': 'PA-28-160',
-      'horsepower': 160,
-      'gear': 'fixed',
-    }, ];
-}
+    $locationProvider.html5Mode(true);
+  }]);

@@ -27,4 +27,4 @@ var planeSchema = mongoose.Schema({
   ceilingFt:            Number
 });
 
-var Plane = mongoose.model('Plane', planeSchema);
+mongoose.model('Plane', planeSchema);

@@ -1,0 +1,81 @@
+div(ng-controller="PlaneCtrl")
+    h1 Create a plane in the system
+
+    form(ng-submit="create()")
+        div
+            input(placeholder="Make", ng-model="plane.make", required)
+
+        div
+            input(placeholder="Model", ng-model="plane.model", required)
+
+        div
+            input(placeholder="Model No.", ng-model="plane.modelNumber")
+
+        div
+            input(placeholder="Model No. (Specific)", ng-model="plane.modelNumberSpecific")
+
+        div
+            input(placeholder="Cruise Speed", ng-model="plane.cruiseSpeedKts")
+
+        div
+            input(placeholder="Top Speed", ng-model="plane.topSpeedKts")
+
+        div
+            input(placeholder="Stall Speed", ng-model="plane.stallSpeedDirtyKts")
+
+        div
+            select(ng-model="plane.gear")
+                option(value="fixed") Fixed gear
+                option(value="retractable") Retractable gear
+
+        div
+            select(ng-model="plane.mixture")
+                option(value="carburated") Carburated
+                option(value="injected") Fuel injected
+
+        div
+            input(placeholder="Engine Make", ng-model="plane.engineMake")
+
+        div
+            input(placeholder="Engine Model", ng-model="plane.engineModel")
+
+        div
+            input(placeholder="Engine Model (Specific)", ng-model="plane.engineModelSpecific")
+
+        div
+            input(placeholder="Horsepower", ng-model="plane.horsepower")
+
+        div
+            input(placeholder="Gross Weight (lbs.)", ng-model="plane.grossWeightPounds")
+
+        div
+            input(placeholder="Empty Weight (lbs.)", ng-model="plane.emptyWeightPounds")
+
+        div
+            input(placeholder="Fuel Capacity (gal.)", ng-model="plane.fuelCapacityGallons")
+
+        div
+            input(placeholder="Range (nm)", ng-model="plane.rangeNM")
+
+        div
+            input(placeholder="Take Off Ground Roll (ft.)", ng-model="plane.takeOffGroundRollFt")
+
+        div
+            input(placeholder="Take Off Over 50 Ft. (ft.)", ng-model="plane.takeOffOver50FtFt")
+
+        div
+            input(placeholder="Landing Ground Roll (ft.)", ng-model="plane.landingGroundRollFt")
+
+        div
+            input(placeholder="Landing Over 50 Ft. (ft.)", ng-model="plane.landingOver50FtFt")
+
+        div
+            input(placeholder="Climb Rate (ft./min.)", ng-model="plane.climbRateFpm")
+
+        div
+            input(placeholder="Ceiling (ft.)", ng-model="plane.ceilingFt")
+
+        div
+            input(type="submit", value="Create plane")
+
+

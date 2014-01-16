@@ -1,0 +1,72 @@
+div(ng-controller="PlaneCtrl", ng-init="search()")
+    h1 Enter search parameters to filter aircraft.
+
+    .form-group
+        label(for="form-gear") Landing gear
+        br
+        select(ng-model="searchParams.gear")#form-gear
+            option(value="") Both
+            option(value="fixed") Fixed
+            option(value="retractable") Retractable
+
+    .form-group
+        label(for="form-min-cruise-speed") Cruise Speed
+        br
+        input(ng-model="minCruiseSpeed", size="4", placeholder="Min")#form-min-cruise-speed
+        input(ng-model="maxCruiseSpeed", size="4", placeholder="Max")
+
+    .form-group
+        label(for="form-min-horsepower") Horsepower
+        br
+        input(ng-model="minHorsepower", size="4", placeholder="Min")#form-min-horsepower
+        input(ng-model="maxHorsepower", size="4", placeholder="Max")
+        
+
+    #search-table-container
+        table#search-table
+            thead
+                tr
+                    th Make
+                    th Model
+                    th Model No.
+                    th Cruise Speed
+                    th Top Speed
+                    th Stall Speed (Dirty)
+                    th Gear
+                    th Mixture
+                    th Engine Make
+                    th Engine Model
+                    th Horsepower
+                    th Gross Weight (lbs.)
+                    th Empty Weight (lbs.)
+                    th Fuel Capacity (gal.)
+                    th Range (NM)
+                    th Takeoff Ground Roll
+                    th Takeoff Over 50 ft.
+                    th Landing Ground Roll
+                    th Landing Over 50 ft.
+                    th Climb Rate (FPM)
+                    th Ceiling (ft.)
+            tbody
+                tr(ng-repeat="plane in planes | filter: searchParams| filter:horsepowerFilter")
+                    td {{plane.make}}
+                    td {{plane.model}}
+                    td {{plane.modelNumber}}
+                    td {{plane.cruiseSpeedKts}}
+                    td {{plane.topSpeedKts}}
+                    td {{plane.stallSpeedDirtyKts}}
+                    td {{plane.gear}}
+                    td {{plane.mixture}}
+                    td {{plane.engineMake}}
+                    td {{plane.engineModel}}
+                    td {{plane.horsepower}}
+                    td {{plane.grossWeightPounds}}
+                    td {{plane.emptyWeightPounds}}
+                    td {{plane.fuelCapacityGallons}}
+                    td {{plane.rangeNM}}
+                    td {{plane.takeOffGroundRollFt}}
+                    td {{plane.takeOffOver50FtFt}}
+                    td {{plane.landingGroundRollFt}}
+                    td {{plane.landingOver50FtFt}}
+                    td {{plane.climbRateFpm}}
+                    td {{plane.ceilingFt}}

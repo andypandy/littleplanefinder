@@ -1,51 +1,15 @@
 extends layout
 
 block content
-    header(role="banner").navbar.navbar-inverse.navbar-fixed-top
-        .container
-            .navbar-header
-                a(href="#").navbar-brand LittlePlaneFinder.com
-            nav.collapse.navbar-collapse
 
-
-
-    div(ng-controller="MyCtrl").container
-        .row
-            .col-md-12
-                h1 Enter search parameters to filter aircraft.
-
-        .row
-            .col-md-2
-                .form-group
-                    label(for="formGear") Landing gear
-                    select(ng-model="searchParams.gear")#formGear.form-control
-                        option(value="") Both
-                        option(value="fixed") Fixed
-                        option(value="retractable") Retractable
-            .col-md-2
-                .form-group
-                    label(for="formMinHorsepower") Min. horsepower
-                    input(ng-model="minHorsepower")#formMinHorsepower.form-control
-
-            .col-md-2
-                .form-group
-                    label(for="formMaxHorsepower") Max. horsepower
-                    input(ng-model="maxHorsepower")#formMaxHorsepower.form-control
-
-        .row
-            .col-md-12
-                table.table.table-hover.table-condensed
-                    thead
-                        tr
-                            th Make
-                            th Model
-                            th Model No.
-                            th Horsepower
-                            th Landing gear
-                    tbody
-                        tr(ng-repeat="plane in planes | filter: searchParams| filter:horsepowerFilter")
-                            td {{plane.make}}
-                            td {{plane.model}}
-                            td {{plane.modelNumber}}
-                            td {{plane.horsepower}}
-                            td {{plane.gear}}
+	div.container
+		ul
+			li
+				a(href="/") Search airplanes
+			li
+				a(href="create") Create a plane
+			li
+				a(href="happy") happy
+		
+	div(ng-controller="AppCtrl").container
+		div(ng-view)
