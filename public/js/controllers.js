@@ -21,6 +21,13 @@ angular.module('myApp.controllers', []).
 
       //Get planes from Planes service
       Planes.query(function(planes) {
+        /*
+        //Add display fields
+        planes.forEach(function(plane, index) {
+          planes[index].highlighted = false;
+        });
+        */
+
         //Add full fuel usable weight
         addFullFuelUsableWeight(planes, function(updatedPlanes) {
           planes = updatedPlanes;
@@ -33,7 +40,7 @@ angular.module('myApp.controllers', []).
       });
 
 
-      //Toggle show all items
+      //Toggle show all planes
       $scope.toggleShowAllPlanes = function() {
         if($scope.showAllPlanes == false) {
           //Put items in $scope.hiddenPlanes into placeholder and empty that array
@@ -61,9 +68,8 @@ angular.module('myApp.controllers', []).
           var hiddenPlaneArray = 'hiddenPlanesPlaceholder';
         }
 
-        //
+        //Add to/remove from hidden planes array
         var index = $scope[hiddenPlaneArray].indexOf(_id);
-        console.log(index);
         if(index == -1) {
           $scope[hiddenPlaneArray].push(_id);
         } else {

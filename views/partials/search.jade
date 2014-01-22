@@ -67,7 +67,7 @@ div(ng-controller="PlaneCtrl", ng-init="search()")
                     th(ng-show="searchFields[22].visible") Climb Rate (FPM)
                     th(ng-show="searchFields[23].visible") Ceiling (ft.)
             tbody
-                tr(ng-repeat="plane in planes | filter: searchParams| filter:horsepowerFilter | filter:hiddenFilter")
+                tr(ng-repeat="plane in planes | filter: searchParams| filter:horsepowerFilter | filter:hiddenFilter", ng-click="toggleHoverClass()")
                     td
                         a(href="#", ng-click="toggleHidden(plane._id)") X
                     td(ng-show="searchFields[0].visible") {{plane.make}}

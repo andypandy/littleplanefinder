@@ -101,7 +101,7 @@ table#search-table tbody {
 	white-space: nowrap;
 }
 
-table#search-table tbody tr:hover {
+table#search-table tbody tr:hover, table#search-table tbody tr.hover  {
 	background: #DDD;
 }
 
