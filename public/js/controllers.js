@@ -21,12 +21,10 @@ angular.module('myApp.controllers', []).
 
       //Get planes from Planes service
       Planes.query(function(planes) {
-        /*
         //Add display fields
         planes.forEach(function(plane, index) {
-          planes[index].highlighted = false;
+          planes[index].hidden = false;
         });
-        */
 
         //Add full fuel usable weight
         addFullFuelUsableWeight(planes, function(updatedPlanes) {
@@ -44,36 +42,26 @@ angular.module('myApp.controllers', []).
       $scope.toggleShowAllPlanes = function() {
         if($scope.showAllPlanes == false) {
           //Put items in $scope.hiddenPlanes into placeholder and empty that array
-          $scope.hiddenPlanesPlaceholder = $scope.hiddenPlanes;
+          //$scope.hiddenPlanesPlaceholder = $scope.hiddenPlanes;
           $scope.showAllPlanesText = 'Rehide hidden planes';
-          $scope.hiddenPlanes = [];
+          //$scope.hiddenPlanes = [];
           $scope.showAllPlanes = true;
         } else {
           //Put planes back in $scope.hiddenPlanes
-          $scope.hiddenPlanes = $scope.hiddenPlanesPlaceholder;
+          //$scope.hiddenPlanes = $scope.hiddenPlanesPlaceholder;
           $scope.showAllPlanesText = 'Show hidden planes';
-          $scope.hiddenPlanesPlaceholder = [];
+          //$scope.hiddenPlanesPlaceholder = [];
           $scope.showAllPlanes = false;
         }
       };
 
 
       //Toggle an item hidden
-      $scope.toggleHidden = function(_id) {
-        //Figure out the right array to put toggled plane into
-        if($scope.showAllPlanes == false) {
-          var hiddenPlaneArray = 'hiddenPlanes';
+      $scope.toggleHidden = function(plane) {
+        if(plane.hidden == true) {
+          plane.hidden = false;
         } else {
-          
-          var hiddenPlaneArray = 'hiddenPlanesPlaceholder';
-        }
-
-        //Add to/remove from hidden planes array
-        var index = $scope[hiddenPlaneArray].indexOf(_id);
-        if(index == -1) {
-          $scope[hiddenPlaneArray].push(_id);
-        } else {
-          $scope[hiddenPlaneArray].splice(index, 1);
+          plane.hidden = true;
         }
       };
 
@@ -143,13 +131,11 @@ angular.module('myApp.controllers', []).
 
     //plane._id's are added to/removed from this when toggled hidden or visible
     $scope.hiddenFilter = function(plane) {
-      var ret = true;
-
-      if($scope.hiddenPlanes.indexOf(plane._id) != -1) {
-        ret = false;
+      if($scope.showAllPlanes == false && plane.hidden == true) {
+        return false;
+      } else  {
+        return true;
       }
-
-      return ret;
     };
 
 

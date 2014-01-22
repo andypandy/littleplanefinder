@@ -13,6 +13,11 @@ header {
 	display: inline-block;
 }
 
+footer {
+	padding: 30px 30px 130px;
+	display: inline-block;
+}
+
 .container {
 	display: inline-block;
 	padding: 0 30px;
@@ -104,6 +109,10 @@ table#search-table tbody {
 
 table#search-table tbody tr:hover, table#search-table tbody tr.hover  {
 	background: #DDD;
+}
+
+tr.hidden-plane {
+	background: #F2DEDE;
 }
 
 th.highlightCell, td.highlightCell {

@@ -67,9 +67,9 @@ div(ng-controller="PlaneCtrl", ng-init="search()")
                     th(ng-show="searchFields[22].visible") Climb Rate (FPM)
                     th(ng-show="searchFields[23].visible") Ceiling (ft.)
             tbody
-                tr(ng-repeat="plane in planes | filter: searchParams| filter:horsepowerFilter | filter:hiddenFilter", ng-click="toggleHoverClass()")
+                tr(ng-repeat="plane in planes | filter: searchParams| filter:horsepowerFilter | filter:hiddenFilter", class="{{plane.hidden == true ? 'hidden-plane' : ''}}")
                     td.jqIgnore
-                        a(href="#", ng-click="toggleHidden(plane._id)") X
+                        span(ng-click="toggleHidden(plane)", class="glyphicon {{plane.hidden == true ? 'glyphicon-plus-sign' : 'glyphicon-minus-sign'}}")
                     td(ng-show="searchFields[0].visible") {{plane.make}}
                     td(ng-show="searchFields[1].visible") {{plane.model}}
                     td(ng-show="searchFields[2].visible") {{plane.modelNumber}}
