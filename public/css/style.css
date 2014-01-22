@@ -35,6 +35,28 @@ h1#brand {
 	font-weight: 600;
 }
 
+h4 {
+	margin: 0;
+}
+
+#search-fields, #search-criteria {
+	border: 1px solid #ccc;
+	background: #ededed;
+	padding: 10px;
+	margin-bottom: 20px;
+	display: inline-block;
+}
+
+.search-field {
+	display: inline-block;
+	float: left;
+	margin-right: 15px;
+}
+
+.search-field input {
+	margin-right: 5px;
+}
+
 .form-group {
 	display: inline-block;
 	float: left;

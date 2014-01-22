@@ -1,25 +1,49 @@
 div(ng-controller="PlaneCtrl", ng-init="search()")
     h1 Enter search parameters to filter aircraft.
 
-    .form-group
-        label(for="form-gear") Landing gear
-        br
-        select(ng-model="searchParams.gear")#form-gear
-            option(value="") Both
-            option(value="fixed") Fixed
-            option(value="retractable") Retractable
+    #search-fields
+        h4 Fields to show
+        .search-field
+            input(type="checkbox", ng-model="showHorsepower")
+            label Horsepower
+        .search-field
+            input(type="checkbox", ng-model="showHorsepower")
+            label Horsepower
+        .clr
 
-    .form-group
-        label(for="form-min-cruise-speed") Cruise Speed
-        br
-        input(ng-model="minCruiseSpeed", size="4", placeholder="Min")#form-min-cruise-speed
-        input(ng-model="maxCruiseSpeed", size="4", placeholder="Max")
 
-    .form-group
-        label(for="form-min-horsepower") Horsepower
-        br
-        input(ng-model="minHorsepower", size="4", placeholder="Min")#form-min-horsepower
-        input(ng-model="maxHorsepower", size="4", placeholder="Max")
+    #search-fields
+        h4 Fields to show
+        .search-field(ng-repeat="field in searchFields")
+            input(type="checkbox", ng-model="field['visible']")
+            Label {{field['label']}}
+
+    .clr
+
+    #search-criteria
+        h4 Search criteria
+
+        .form-group
+            label(for="form-gear") Landing gear
+            br
+            select(ng-model="searchParams.gear")#form-gear
+                option(value="") Both
+                option(value="fixed") Fixed
+                option(value="retractable") Retractable
+
+        .form-group
+            label(for="form-min-cruise-speed") Cruise Speed
+            br
+            input(ng-model="minCruiseSpeed", size="4", placeholder="Min")#form-min-cruise-speed
+            input(ng-model="maxCruiseSpeed", size="4", placeholder="Max")
+
+        .form-group
+            label(for="form-min-horsepower") Horsepower
+            br
+            input(ng-model="minHorsepower", size="4", placeholder="Min")#form-min-horsepower
+            input(ng-model="maxHorsepower", size="4", placeholder="Max")
+
+        .clr
         
 
     #search-table-container
@@ -36,9 +60,11 @@ div(ng-controller="PlaneCtrl", ng-init="search()")
                     th Mixture
                     th Engine Make
                     th Engine Model
-                    th Horsepower
+                    th(ng-show="searchFields[0].visible") Horsepower
                     th Gross Weight (lbs.)
                     th Empty Weight (lbs.)
+                    th Usable Weight (lbs.)
+                    th Full Fuel Usable Weight (lbs.)
                     th Fuel Capacity (gal.)
                     th Range (NM)
                     th Takeoff Ground Roll
@@ -52,21 +78,23 @@ div(ng-controller="PlaneCtrl", ng-init="search()")
                     td {{plane.make}}
                     td {{plane.model}}
                     td {{plane.modelNumber}}
-                    td {{plane.cruiseSpeedKts}}
-                    td {{plane.topSpeedKts}}
-                    td {{plane.stallSpeedDirtyKts}}
+                    td {{plane.cruiseSpeedKts | number:0}}
+                    td {{plane.topSpeedKts | number:0}}
+                    td {{plane.stallSpeedDirtyKts | number:0}}
                     td {{plane.gear}}
                     td {{plane.mixture}}
                     td {{plane.engineMake}}
                     td {{plane.engineModel}}
-                    td {{plane.horsepower}}
-                    td {{plane.grossWeightPounds}}
-                    td {{plane.emptyWeightPounds}}
-                    td {{plane.fuelCapacityGallons}}
-                    td {{plane.rangeNM}}
-                    td {{plane.takeOffGroundRollFt}}
-                    td {{plane.takeOffOver50FtFt}}
-                    td {{plane.landingGroundRollFt}}
-                    td {{plane.landingOver50FtFt}}
-                    td {{plane.climbRateFpm}}
-                    td {{plane.ceilingFt}}
+                    td(ng-show="searchFields[0].visible") {{plane.horsepower | number:0}}
+                    td {{plane.grossWeightPounds | number:0}}
+                    td {{plane.emptyWeightPounds | number:0}}
+                    td {{plane.grossWeightPounds-plane.emptyWeightPounds | number:0}}
+                    td {{plane.fullFuelUsableWeight}}
+                    td {{plane.fuelCapacityGallons | number:0}}
+                    td {{plane.rangeNM | number:0}}
+                    td {{plane.takeOffGroundRollFt | number:0}}
+                    td {{plane.takeOffOver50FtFt | number:0}}
+                    td {{plane.landingGroundRollFt | number:0}}
+                    td {{plane.landingOver50FtFt | number:0}}
+                    td {{plane.climbRateFpm | number:0}}
+                    td {{plane.ceilingFt | number:0}}
