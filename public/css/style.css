@@ -99,6 +99,7 @@ table#search-table thead th, table#search-table tbody tr td {
 
 table#search-table tbody {
 	white-space: nowrap;
+	cursor: pointer;
 }
 
 table#search-table tbody tr:hover, table#search-table tbody tr.hover  {
