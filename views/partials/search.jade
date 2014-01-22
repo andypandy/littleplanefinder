@@ -3,17 +3,6 @@ div(ng-controller="PlaneCtrl", ng-init="search()")
 
     #search-fields
         h4 Fields to show
-        .search-field
-            input(type="checkbox", ng-model="showHorsepower")
-            label Horsepower
-        .search-field
-            input(type="checkbox", ng-model="showHorsepower")
-            label Horsepower
-        .clr
-
-
-    #search-fields
-        h4 Fields to show
         .search-field(ng-repeat="field in searchFields")
             input(type="checkbox", ng-model="field['visible']")
             Label {{field['label']}}
@@ -22,6 +11,8 @@ div(ng-controller="PlaneCtrl", ng-init="search()")
 
     #search-criteria
         h4 Search criteria
+        a(href="#", ng-click="toggleShowAllPlanes()") {{showAllPlanesText}}
+        .clr
 
         .form-group
             label(for="form-gear") Landing gear
@@ -50,51 +41,56 @@ div(ng-controller="PlaneCtrl", ng-init="search()")
         table#search-table
             thead
                 tr
-                    th Make
-                    th Model
-                    th Model No.
-                    th Cruise Speed
-                    th Top Speed
-                    th Stall Speed (Dirty)
-                    th Gear
-                    th Mixture
-                    th Engine Make
-                    th Engine Model
-                    th(ng-show="searchFields[0].visible") Horsepower
-                    th Gross Weight (lbs.)
-                    th Empty Weight (lbs.)
-                    th Usable Weight (lbs.)
-                    th Full Fuel Usable Weight (lbs.)
-                    th Fuel Capacity (gal.)
-                    th Range (NM)
-                    th Takeoff Ground Roll
-                    th Takeoff Over 50 ft.
-                    th Landing Ground Roll
-                    th Landing Over 50 ft.
-                    th Climb Rate (FPM)
-                    th Ceiling (ft.)
+                    th 
+                    th(ng-show="searchFields[0].visible") Make
+                    th(ng-show="searchFields[1].visible") Model
+                    th(ng-show="searchFields[2].visible") Model No.
+                    th(ng-show="searchFields[3].visible") Cruise Speed
+                    th(ng-show="searchFields[4].visible") Top Speed
+                    th(ng-show="searchFields[5].visible") Stall Speed (Dirty)
+                    th(ng-show="searchFields[6].visible") Gear
+                    th(ng-show="searchFields[7].visible") Mixture
+                    th(ng-show="searchFields[8].visible") Engine Make
+                    th(ng-show="searchFields[9].visible") Engine Model
+                    th(ng-show="searchFields[10].visible") Engine Model (Specific)
+                    th(ng-show="searchFields[11].visible") Horsepower
+                    th(ng-show="searchFields[12].visible") Gross Weight (lbs.)
+                    th(ng-show="searchFields[13].visible") Empty Weight (lbs.)
+                    th(ng-show="searchFields[14].visible") Usable Weight (lbs.)
+                    th(ng-show="searchFields[15].visible") Full Fuel Usable Weight (lbs.)
+                    th(ng-show="searchFields[16].visible") Fuel Capacity (gal.)
+                    th(ng-show="searchFields[17].visible") Range (NM)
+                    th(ng-show="searchFields[18].visible") Takeoff Ground Roll
+                    th(ng-show="searchFields[19].visible") Takeoff Over 50 ft.
+                    th(ng-show="searchFields[20].visible") Landing Ground Roll
+                    th(ng-show="searchFields[21].visible") Landing Over 50 ft.
+                    th(ng-show="searchFields[22].visible") Climb Rate (FPM)
+                    th(ng-show="searchFields[23].visible") Ceiling (ft.)
             tbody
-                tr(ng-repeat="plane in planes | filter: searchParams| filter:horsepowerFilter")
-                    td {{plane.make}}
-                    td {{plane.model}}
-                    td {{plane.modelNumber}}
-                    td {{plane.cruiseSpeedKts | number:0}}
-                    td {{plane.topSpeedKts | number:0}}
-                    td {{plane.stallSpeedDirtyKts | number:0}}
-                    td {{plane.gear}}
-                    td {{plane.mixture}}
-                    td {{plane.engineMake}}
-                    td {{plane.engineModel}}
-                    td(ng-show="searchFields[0].visible") {{plane.horsepower | number:0}}
-                    td {{plane.grossWeightPounds | number:0}}
-                    td {{plane.emptyWeightPounds | number:0}}
-                    td {{plane.grossWeightPounds-plane.emptyWeightPounds | number:0}}
-                    td {{plane.fullFuelUsableWeight}}
-                    td {{plane.fuelCapacityGallons | number:0}}
-                    td {{plane.rangeNM | number:0}}
-                    td {{plane.takeOffGroundRollFt | number:0}}
-                    td {{plane.takeOffOver50FtFt | number:0}}
-                    td {{plane.landingGroundRollFt | number:0}}
-                    td {{plane.landingOver50FtFt | number:0}}
-                    td {{plane.climbRateFpm | number:0}}
-                    td {{plane.ceilingFt | number:0}}
+                tr(ng-repeat="plane in planes | filter: searchParams| filter:horsepowerFilter | filter:hiddenFilter")
+                    td
+                        a(href="#", ng-click="toggleHidden(plane._id)") X
+                    td(ng-show="searchFields[0].visible") {{plane.make}}
+                    td(ng-show="searchFields[1].visible") {{plane.model}}
+                    td(ng-show="searchFields[2].visible") {{plane.modelNumber}}
+                    td(ng-show="searchFields[3].visible") {{plane.cruiseSpeedKts | number:0}}
+                    td(ng-show="searchFields[4].visible") {{plane.topSpeedKts | number:0}}
+                    td(ng-show="searchFields[5].visible") {{plane.stallSpeedDirtyKts | number:0}}
+                    td(ng-show="searchFields[6].visible") {{plane.gear}}
+                    td(ng-show="searchFields[7].visible") {{plane.mixture}}
+                    td(ng-show="searchFields[8].visible") {{plane.engineMake}}
+                    td(ng-show="searchFields[9].visible") {{plane.engineModel}}
+                    td(ng-show="searchFields[10].visible") {{plane.engineModelSpecific}}
+                    td(ng-show="searchFields[11].visible") {{plane.horsepower | number:0}}
+                    td(ng-show="searchFields[12].visible") {{plane.grossWeightPounds | number:0}}
+                    td(ng-show="searchFields[13].visible") {{plane.emptyWeightPounds | number:0}}
+                    td(ng-show="searchFields[14].visible") {{plane.grossWeightPounds-plane.emptyWeightPounds | number:0}}
+                    td(ng-show="searchFields[15].visible") {{plane.fullFuelUsableWeight}}
+                    td(ng-show="searchFields[16].visible") {{plane.fuelCapacityGallons | number:0}}
+                    td(ng-show="searchFields[17].visible") {{plane.rangeNM | number:0}}
+                    td(ng-show="searchFields[18].visible") {{plane.takeOffGroundRollFt | number:0}}
+                    td(ng-show="searchFields[19].visible") {{plane.takeOffOver50FtFt | number:0}}
+                    td(ng-show="searchFields[20].visible") {{plane.landingGroundRollFt | number:0}}
+                    td(ng-show="searchFields[21].visible") {{plane.landingOver50FtFt | number:0}}
+                    td(ng-show="searchFields[22].visible") {{plane.climbRateFpm | number:0}}
+                    td(ng-show="searchFields[23].visible") {{plane.ceilingFt | number:0}}
