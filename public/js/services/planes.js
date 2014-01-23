@@ -36,13 +36,13 @@ angular.module('myApp.services', []).
       type: 'numeric',
     }, {
       label: 'Gear', //6
-      field: '',
-      type: 'numeric',
+      field: 'gear',
+      type: 'select',
       visible: true
     }, {
       label: 'Mixture', //7
-      field: '',
-      type: '',
+      field: 'mixture',
+      type: 'select',
       visible: true
     }, {
       label: 'Engine Make', //8

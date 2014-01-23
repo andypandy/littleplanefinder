@@ -10,6 +10,11 @@ div(ng-controller="PlaneCtrl", ng-init="search()")
     .clr
 
     #search-criteria
+        .form-group(ng-repeat="searchField in searchFields")
+            lpf-search-field(sf="searchField")
+
+        .clr
+
         h4 Search criteria
         a(href="#", ng-click="toggleShowAllPlanes()") {{showAllPlanesText}}
         .clr
@@ -17,22 +22,30 @@ div(ng-controller="PlaneCtrl", ng-init="search()")
         .form-group
             label(for="form-gear") Landing gear
             br
-            select(ng-model="searchParams.gear")#form-gear
-                option(value="") Both
+            select(ng-model="gear")#form-gear
+                option(value="") Any
                 option(value="fixed") Fixed
                 option(value="retractable") Retractable
 
         .form-group
+            label(for="form-mixture") Mixture
+            br
+            select(ng-model="mixture")#form-mixture
+                option(value="") Any
+                option(value="carburated") Carburated
+                option(value="fuelinjected") Fuel Injected
+
+        .form-group
             label(for="form-min-cruise-speed") Cruise Speed
             br
-            input(ng-model="mincruiseSpeedKts", size="4", placeholder="Min")#form-min-cruise-speed
-            input(ng-model="maxcruiseSpeedKts", size="4", placeholder="Max")
+            input(ng-model="cruiseSpeedKts.min", size="4", placeholder="Min")#form-min-cruise-speed
+            input(ng-model="cruiseSpeedKts.max", size="4", placeholder="Max")
 
         .form-group
             label(for="form-min-horsepower") Horsepower
             br
-            input(ng-model="minhorsepower", size="4", placeholder="Min")#form-min-horsepower
-            input(ng-model="maxhorsepower", size="4", placeholder="Max")
+            input(ng-model="horsepower.min", size="4", placeholder="Min")#form-min-horsepower
+            input(ng-model="horsepower.max", size="4", placeholder="Max")
 
         .clr
         
@@ -68,7 +81,7 @@ div(ng-controller="PlaneCtrl", ng-init="search()")
                     th(ng-show="searchFields[22].visible") Climb Rate (FPM)
                     th(ng-show="searchFields[23].visible") Ceiling (ft.)
             tbody
-                tr(ng-repeat="plane in planes | filter: searchParams| filter:searchFieldFilter| filter:hiddenFilter", class="{{plane.hidden == true ? 'hidden-plane' : ''}}")
+                tr(ng-repeat="plane in planes | filter:searchFieldFilter| filter:hiddenFilter", class="{{plane.hidden == true ? 'hidden-plane' : ''}}")
                     td.jqIgnore
                         span(ng-click="toggleHidden(plane)", class="glyphicon {{plane.hidden == true ? 'glyphicon-plus-sign' : 'glyphicon-minus-sign'}}")
                     td(ng-show="searchFields[0].visible") {{plane.make}}

@@ -8,6 +8,7 @@ angular.module('myApp.controllers', []).
   }]).
   controller('PlaneCtrl', ['$scope', '$http', 'Planes', 'SearchFields', function($scope, $http, Planes, SearchFields) {
     $scope.searchFields = SearchFields;
+    $scope.testy = 'hey';
 
     //Search page (find all planes)
     $scope.search = function() {
@@ -102,20 +103,27 @@ angular.module('myApp.controllers', []).
     //if($scope['min' + field] && $scope.['min' + field] > plane[field]) {}
 
 
-    //Horsepower filter
+    //Filter: for search fields
     $scope.searchFieldFilter = function(plane) {
       var ret = true;
 
       
       $scope.searchFields.forEach(function(searchField, index) {
         if(searchField.field) {
-          if(searchField.type == 'numeric') {
-            if($scope['min'+searchField.field] && $scope['min'+searchField.field] > plane[searchField.field]) {
+          if(searchField.type == 'select') { //Select boxes
+            //
+            if($scope[searchField.field] && $scope[searchField.field] != plane[searchField.field]) {
               ret = false;
             }
+          } else if(searchField.type == 'numeric') { //Min/max numeric inputs
+            if($scope[searchField.field]) {
+              if($scope[searchField.field].min !== undefined && $scope[searchField.field].min > plane[searchField.field]) {
+                ret = false;
+              }
 
-            if($scope['max'+searchField.field] && $scope['max'+searchField.field] < plane[searchField.field]) {
-              ret = false;
+              if($scope[searchField.field].max !== undefined && $scope[searchField.field].max < plane[searchField.field]) {
+                ret = false;
+              }
             }
           }
         }
@@ -126,7 +134,7 @@ angular.module('myApp.controllers', []).
     };
 
 
-    //plane._id's are added to/removed from this when toggled hidden or visible
+    //Filter: hides where plane.hidden=true
     $scope.hiddenFilter = function(plane) {
       if($scope.showAllPlanes == false && plane.hidden == true) {
         return false;
