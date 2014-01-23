@@ -7,17 +7,14 @@ angular.module('myApp.controllers', []).
     //
   }]).
   controller('PlaneCtrl', ['$scope', '$http', 'Planes', 'SearchFields', function($scope, $http, Planes, SearchFields) {
-
+    $scope.searchFields = SearchFields;
 
     //Search page (find all planes)
     $scope.search = function() {
-      //Visible fields defaults
-      $scope.searchFields = SearchFields;
-      $scope.hiddenPlanes = [];
-      $scope.hiddenPlanesPlaceholder = [];
-      $scope.showAllPlanesText = 'Show hidden planes';
       $scope.showAllPlanes = false;
-
+      $scope.$watch('showAllPlanes', function() {
+        $scope.showAllPlanesText = $scope.showAllPlanes ? 'Rehide hidden planes' : 'Show hidden planes';
+      });
 
       //Get planes from Planes service
       Planes.query(function(planes) {
@@ -40,29 +37,14 @@ angular.module('myApp.controllers', []).
 
       //Toggle show all planes
       $scope.toggleShowAllPlanes = function() {
-        if($scope.showAllPlanes == false) {
-          //Put items in $scope.hiddenPlanes into placeholder and empty that array
-          //$scope.hiddenPlanesPlaceholder = $scope.hiddenPlanes;
-          $scope.showAllPlanesText = 'Rehide hidden planes';
-          //$scope.hiddenPlanes = [];
-          $scope.showAllPlanes = true;
-        } else {
-          //Put planes back in $scope.hiddenPlanes
-          //$scope.hiddenPlanes = $scope.hiddenPlanesPlaceholder;
-          $scope.showAllPlanesText = 'Show hidden planes';
-          //$scope.hiddenPlanesPlaceholder = [];
-          $scope.showAllPlanes = false;
-        }
+        $scope.showAllPlanes = $scope.showAllPlanes ? false : true;
+        //$scope.showAllPlanesText = $scope.showAllPlanes ? 'Rehide hidden planes' : 'Show hidden planes';
       };
 
 
       //Toggle an item hidden
       $scope.toggleHidden = function(plane) {
-        if(plane.hidden == true) {
-          plane.hidden = false;
-        } else {
-          plane.hidden = true;
-        }
+        plane.hidden = plane.hidden ? false : true;
       };
 
 
@@ -113,17 +95,32 @@ angular.module('myApp.controllers', []).
      *  Filters
      */
 
+    //If its numeric, show a max and min
+
+    //If its text, show select
+
+    //if($scope['min' + field] && $scope.['min' + field] > plane[field]) {}
+
+
     //Horsepower filter
-    $scope.horsepowerFilter = function(plane) {
+    $scope.searchFieldFilter = function(plane) {
       var ret = true;
 
-      if ($scope.minHorsepower && $scope.minHorsepower > plane.horsepower) {
-        ret = false;
-      }
+      
+      $scope.searchFields.forEach(function(searchField, index) {
+        if(searchField.field) {
+          if(searchField.type == 'numeric') {
+            if($scope['min'+searchField.field] && $scope['min'+searchField.field] > plane[searchField.field]) {
+              ret = false;
+            }
 
-      if ($scope.maxHorsepower && $scope.maxHorsepower < plane.horsepower) {
-        ret = false;
-      }
+            if($scope['max'+searchField.field] && $scope['max'+searchField.field] < plane[searchField.field]) {
+              ret = false;
+            }
+          }
+        }
+
+      });
 
       return ret;
     };

@@ -25,19 +25,20 @@ div(ng-controller="PlaneCtrl", ng-init="search()")
         .form-group
             label(for="form-min-cruise-speed") Cruise Speed
             br
-            input(ng-model="minCruiseSpeed", size="4", placeholder="Min")#form-min-cruise-speed
-            input(ng-model="maxCruiseSpeed", size="4", placeholder="Max")
+            input(ng-model="mincruiseSpeedKts", size="4", placeholder="Min")#form-min-cruise-speed
+            input(ng-model="maxcruiseSpeedKts", size="4", placeholder="Max")
 
         .form-group
             label(for="form-min-horsepower") Horsepower
             br
-            input(ng-model="minHorsepower", size="4", placeholder="Min")#form-min-horsepower
-            input(ng-model="maxHorsepower", size="4", placeholder="Max")
+            input(ng-model="minhorsepower", size="4", placeholder="Min")#form-min-horsepower
+            input(ng-model="maxhorsepower", size="4", placeholder="Max")
 
         .clr
         
 
     #search-table-container
+        h2(style="margin-bottom: 0;") Results
         table#search-table
             thead
                 tr
@@ -67,7 +68,7 @@ div(ng-controller="PlaneCtrl", ng-init="search()")
                     th(ng-show="searchFields[22].visible") Climb Rate (FPM)
                     th(ng-show="searchFields[23].visible") Ceiling (ft.)
             tbody
-                tr(ng-repeat="plane in planes | filter: searchParams| filter:horsepowerFilter | filter:hiddenFilter", class="{{plane.hidden == true ? 'hidden-plane' : ''}}")
+                tr(ng-repeat="plane in planes | filter: searchParams| filter:searchFieldFilter| filter:hiddenFilter", class="{{plane.hidden == true ? 'hidden-plane' : ''}}")
                     td.jqIgnore
                         span(ng-click="toggleHidden(plane)", class="glyphicon {{plane.hidden == true ? 'glyphicon-plus-sign' : 'glyphicon-minus-sign'}}")
                     td(ng-show="searchFields[0].visible") {{plane.make}}
