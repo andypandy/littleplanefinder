@@ -8,14 +8,28 @@ angular.module('myApp.controllers', []).
   }]).
   controller('PlaneCtrl', ['$scope', '$http', 'Planes', 'SearchFields', function($scope, $http, Planes, SearchFields) {
     $scope.searchFields = SearchFields;
-    $scope.testy = 'hey';
+    $scope.searchFields.forEach(function(item, index) {
+      if(item.field != '' && item.type != '') {
+        if(item.type == 'numeric') {
+          $scope[item.field] = {};    
+        }
+
+        if(item.type == 'select') {
+          $scope[item.field] = '';
+        }
+      }
+    });
+    //$scope.cruiseSpeedKts = {};
 
     //Search page (find all planes)
     $scope.search = function() {
+      
+      //Stuff for showing/hiding "hidden" planes
       $scope.showAllPlanes = false;
       $scope.$watch('showAllPlanes', function() {
         $scope.showAllPlanesText = $scope.showAllPlanes ? 'Rehide hidden planes' : 'Show hidden planes';
       });
+
 
       //Get planes from Planes service
       Planes.query(function(planes) {
@@ -106,23 +120,33 @@ angular.module('myApp.controllers', []).
     //Filter: for search fields
     $scope.searchFieldFilter = function(plane) {
       var ret = true;
+      //console.log($scope.gear);
 
       
       $scope.searchFields.forEach(function(searchField, index) {
         if(searchField.field) {
-          if(searchField.type == 'select') { //Select boxes
+          
+          //Dropdown (type will be set to 'select')
+          if(searchField.type == 'select') {
             //
             if($scope[searchField.field] && $scope[searchField.field] != plane[searchField.field]) {
               ret = false;
             }
-          } else if(searchField.type == 'numeric') { //Min/max numeric inputs
-            if($scope[searchField.field]) {
-              if($scope[searchField.field].min !== undefined && $scope[searchField.field].min > plane[searchField.field]) {
-                ret = false;
+
+          //Min/max numeric inputs (type will be set to 'numeric')
+          } else if(searchField.type == 'numeric') {
+            if($scope[searchField.field]) { //Only set `.field` (in services/planes.js) if you want to filter on it
+              //If the field isn't blank
+              if($scope[searchField.field].min !== undefined && $scope[searchField.field].min != '') {
+                if($scope[searchField.field].min > plane[searchField.field]) {
+                  ret = false;
+                }
               }
 
-              if($scope[searchField.field].max !== undefined && $scope[searchField.field].max < plane[searchField.field]) {
-                ret = false;
+              if($scope[searchField.field].max !== undefined && $scope[searchField.field].max != '') {
+                if($scope[searchField.field].max < plane[searchField.field]) {
+                  ret = false;
+                }
               }
             }
           }

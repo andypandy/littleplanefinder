@@ -65,6 +65,7 @@ h4 {
 	display: inline-block;
 	float: left;
 	margin-right: 15px;
+	width: 195px;
 }
 
 .search-field input {
@@ -76,18 +77,18 @@ h4 {
 	margin: 2px 0;
 	padding: 0;
 	display: inline-block;
-	width: 175px;
 }
 
 .form-group {
 	display: inline-block;
 	float: left;
 	margin-right: 10px;
+	width: 175px;
 }
 
 .form-group label {
-	font-size: 14px;
-	font-weight: 600;
+	font-size: 12px;
+	font-weight: 400;
 }
 
 .form-group input {

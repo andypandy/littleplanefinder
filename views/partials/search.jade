@@ -11,7 +11,11 @@ div(ng-controller="PlaneCtrl", ng-init="search()")
 
     #search-criteria
         .form-group(ng-repeat="searchField in searchFields")
-            lpf-search-field(sf="searchField")
+            div(ng-switch="searchField.type")
+                div(ng-switch-when="numeric")
+                    numeric-search-field(label="{{searchField.label}}", field="$parent[searchField.field]")
+                div(ng-switch-when="select")
+                    select-search-field(label="{{searchField.label}}", field="$parent[searchField.field]", options="searchField.options")
 
         .clr
 

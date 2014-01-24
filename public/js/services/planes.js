@@ -32,17 +32,37 @@ angular.module('myApp.services', []).
       visible: false
     }, {
       label: 'Stall Speed Dirty (kts.)', //5
-      field: '',
+      field: 'stallSpeedDirtyKts',
       type: 'numeric',
     }, {
-      label: 'Gear', //6
+      label: 'Landing gear', //6
       field: 'gear',
       type: 'select',
+      options: [{
+        value: '',
+        label: 'Any'
+      },{
+        value: 'fixed',
+        label: 'Fixed'
+      }, {
+        value: 'retractable',
+        label: 'Retractable'
+      }],
       visible: true
     }, {
       label: 'Mixture', //7
       field: 'mixture',
       type: 'select',
+      options: [{
+        value: '',
+        label: 'Any'
+      },{
+        value: 'fuel injected',
+        label: 'Fuel injected'
+      }, {
+        value: 'carburated',
+        label: 'Carburated'
+      }],
       visible: true
     }, {
       label: 'Engine Make', //8
