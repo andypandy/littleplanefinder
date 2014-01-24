@@ -12,6 +12,8 @@ div(ng-controller="PlaneCtrl", ng-init="search()")
     #search-criteria
         .form-group(ng-repeat="searchField in searchFields")
             div(ng-switch="searchField.type")
+                div(ng-switch-when="string")
+                    text-search-field(label="{{searchField.label}}", field="$parent[searchField.field]")
                 div(ng-switch-when="numeric")
                     numeric-search-field(label="{{searchField.label}}", field="$parent[searchField.field]")
                 div(ng-switch-when="select")
@@ -22,6 +24,11 @@ div(ng-controller="PlaneCtrl", ng-init="search()")
         h4 Search criteria
         a(href="#", ng-click="toggleShowAllPlanes()") {{showAllPlanesText}}
         .clr
+
+        .form-group
+            label Make
+            br
+            input(type="text", ng-model="make", placeholder="Enter text")
 
         .form-group
             label(for="form-gear") Landing gear
@@ -37,7 +44,7 @@ div(ng-controller="PlaneCtrl", ng-init="search()")
             select(ng-model="mixture")#form-mixture
                 option(value="") Any
                 option(value="carburated") Carburated
-                option(value="fuelinjected") Fuel Injected
+                option(value="injected") Fuel Injected
 
         .form-group
             label(for="form-min-cruise-speed") Cruise Speed

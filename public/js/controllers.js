@@ -14,11 +14,12 @@ angular.module('myApp.controllers', []).
           $scope[item.field] = {};    
         }
 
-        if(item.type == 'select') {
+        if(item.type == 'select' || item.type == 'string') {
           $scope[item.field] = '';
         }
       }
     });
+    console.log($scope);
     //$scope.cruiseSpeedKts = {};
 
     //Search page (find all planes)
@@ -126,8 +127,11 @@ angular.module('myApp.controllers', []).
       $scope.searchFields.forEach(function(searchField, index) {
         if(searchField.field) {
           
-          //Dropdown (type will be set to 'select')
-          if(searchField.type == 'select') {
+          if(searchField.type == 'string') {
+            if(plane[searchField.field].indexOf($scope[searchField.field]) == -1) {
+              ret = false;
+            }
+          } else if(searchField.type == 'select') {
             //
             if($scope[searchField.field] && $scope[searchField.field] != '') {
               if($scope[searchField.field] != plane[searchField.field]) {

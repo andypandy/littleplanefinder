@@ -57,7 +57,7 @@ angular.module('myApp.services', []).
         value: '',
         label: 'Any'
       },{
-        value: 'fuel injected',
+        value: 'injected',
         label: 'Fuel injected'
       }, {
         value: 'carburated',

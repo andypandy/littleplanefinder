@@ -1,9 +1,32 @@
     angular.module('myApp.directives', [])
+      
+      //Numeric fields have a min and a max box
       .directive('numericSearchField', function() {
         function template() {
           return '<label>{{label}}</label><br>' + 
             '<input ng-model="field.min" placeholder="Min" size="4">' + 
             '<input ng-model="field.max" placeholder="Max" size="4">';
+        }
+
+        return {
+          restrict: 'E',
+          scope: {
+            label: '@',
+            field: '='
+          },
+          template: template(),
+          /*link: function(scope, element, attrs) {
+            console.log(scope);
+          }*/
+        };
+      })
+
+
+      //Text search field
+      .directive('textSearchField', function() {
+        function template() {
+          return '<label>{{label}}</label><br>' + 
+            '<input ng-model="field" placeholder="Enter text">';
         }
 
         return {
