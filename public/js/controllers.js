@@ -127,10 +127,13 @@ angular.module('myApp.controllers', []).
       $scope.searchFields.forEach(function(searchField, index) {
         if(searchField.field) {
           
+          //Text string searches
           if(searchField.type == 'string') {
-            if(plane[searchField.field].indexOf($scope[searchField.field]) == -1) {
+            if(plane[searchField.field].toLowerCase().indexOf($scope[searchField.field].toLowerCase()) == -1) {
               ret = false;
             }
+
+          //Select dropdowns
           } else if(searchField.type == 'select') {
             //
             if($scope[searchField.field] && $scope[searchField.field] != '') {
