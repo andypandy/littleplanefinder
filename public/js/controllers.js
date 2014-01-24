@@ -129,8 +129,10 @@ angular.module('myApp.controllers', []).
           //Dropdown (type will be set to 'select')
           if(searchField.type == 'select') {
             //
-            if($scope[searchField.field] && $scope[searchField.field] != plane[searchField.field]) {
-              ret = false;
+            if($scope[searchField.field] && $scope[searchField.field] != '') {
+              if($scope[searchField.field] != plane[searchField.field]) {
+                ret = false;
+              }
             }
 
           //Min/max numeric inputs (type will be set to 'numeric')
