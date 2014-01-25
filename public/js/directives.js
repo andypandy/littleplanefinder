@@ -21,6 +21,27 @@
         };
       })
 
+      /*
+      //Text search field
+      .directive('textSearchField', function() {
+        function template() {
+          return '<label>{{label}}</label><br>' + 
+            '<input ng-model="field" placeholder="Enter text">';
+        }
+
+        return {
+          restrict: 'E',
+          scope: {
+            label: '@',
+            field: '='
+          },
+          template: template(),
+          link: function(scope, element, attrs) {
+            console.log(scope);
+          }
+        };
+      })*/
+
 
       //Text search field
       .directive('textSearchField', function() {
@@ -41,6 +62,8 @@
           }*/
         };
       })
+
+
 
 
       //Created <select> dropdown w/options
