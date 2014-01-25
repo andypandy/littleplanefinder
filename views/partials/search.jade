@@ -16,7 +16,9 @@ div(ng-controller="PlaneCtrl", ng-init="search()")
         .form-group(ng-repeat="searchField in searchFields")
             div(ng-switch="searchField.type")
                 div(ng-switch-when="string")
-                    text-search-field(label="{{searchField.label}}", field="$parent[searchField.field]")
+                    label {{searchField.label}}
+                    br
+                    input(ng-model="$parent[searchField.field]") 
                 div(ng-switch-when="numeric")
                     numeric-search-field(label="{{searchField.label}}", field="$parent[searchField.field]")
                 div(ng-switch-when="select")

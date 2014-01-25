@@ -21,6 +21,7 @@ angular.module('myApp.controllers', []).
     });
 
     console.log($scope);
+    $scope.make = 'Piper';
 
 
 
