@@ -12,13 +12,13 @@ angular.module('myApp.services', []).
       visible: true
     }, {
       label: 'Model', //1
-      field: 'model',
-      type: '',
+      field: '',
+      type: 'string',
       visible: true
     }, {
       label: 'Model No.', //2
-      field: '',
-      type: '',
+      field: 'modelNumber',
+      type: 'string',
       visible: true
     }, {
       label: 'Cruise Speed (kts.)', //3
@@ -66,18 +66,18 @@ angular.module('myApp.services', []).
       visible: true
     }, {
       label: 'Engine Make', //8
-      field: '',
-      type: '',
+      field: 'engineMake',
+      type: 'string',
       visible: true
     }, {
       label: 'Engine Model', //9
-      field: '',
-      type: '',
+      field: 'engineModel',
+      type: 'string',
       visible: true
     }, {
       label: 'Engine Model (Specific)', //10
-      field: '',
-      type: '',
+      field: 'engineModelSpecific',
+      type: 'string',
       visible: false
     }, {
       label: 'Horsepower', //11
@@ -86,63 +86,63 @@ angular.module('myApp.services', []).
       visible: true
     }, {
       label: 'Gross Weight (lbs.)', //12
-      field: '',
-      type: '',
+      field: 'grossWeightPounds',
+      type: 'numeric',
       visible: true
     }, {
       label: 'Empty Weight (lbs.)', //13
-      field: '',
-      type: '',
+      field: 'emptyWeightPounds',
+      type: 'numeric',
       visible: true
     }, {
       label: 'Usable Weight (lbs.)', //14
-      field: '',
-      type: '',
+      field: 'usableWeightPounds',
+      type: 'numeric',
       visible: true
     }, {
       label: 'Full Fuel Usable Weight (lbs.)', //15
-      field: '',
-      type: '',
+      field: 'fullFuelUsableWeightPounds',
+      type: 'numeric',
       visible: true
     }, {
       label: 'Fuel Capacity (gal.)', //16
-      field: '',
-      type: '',
+      field: 'fuelCapacityGallons',
+      type: 'numeric',
       visible: true
     }, {
       label: 'Range (nm)', //17
-      field: '',
-      type: '',
+      field: 'rangeNM',
+      type: 'numeric',
       visible: true
     }, {
       label: 'Take Off Ground Roll (ft.)', //18
-      field: '',
-      type: '',
+      field: 'takeOffGroundRollFt',
+      type: 'numeric',
       visible: false
     }, {
       label: 'Take Off Over 50 Ft. (ft.)', //19
-      field: '',
-      type: '',
+      field: 'takeOffOver50FtFt',
+      type: 'numeric',
       visible: false
     }, {
       label: 'Landing Ground Roll (ft.)', //20
-      field: '',
-      type: '',
+      field: 'landingGroundRollFt',
+      type: 'numeric',
       visible: false
     }, {
       label: 'Landing Over 50 Ft. (ft.)', //21
-      field: '',
-      type: '',
+      field: 'landingOver50FtFt',
+      type: 'numeric',
       visible: false
     }, {
       label: 'Climb Rate (fpm.)', //22
-      field: '',
-      type: '',
+      field: 'climbRateFpm',
+      type: 'numeric',
       visible: false
     }, {
       label: 'Ceiling (ft.)', //23
-      field: '',
-      type: '',
+      field: 'ceilingFt',
+      type: 'numeric',
       visible: false
     }];
 

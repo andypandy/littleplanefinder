@@ -4,8 +4,8 @@
       .directive('numericSearchField', function() {
         function template() {
           return '<label>{{label}}</label><br>' + 
-            '<input ng-model="field.min" placeholder="Min" size="4">' + 
-            '<input ng-model="field.max" placeholder="Max" size="4">';
+            '<input ng-model="field.min" placeholder="Min" size="8">' + 
+            '<input ng-model="field.max" placeholder="Max" size="8">';
         }
 
         return {
@@ -43,6 +43,7 @@
       })
 
 
+      //Created <select> dropdown w/options
       .directive('selectSearchField',function($parse) {
         function template() {
           //return '<div ng-repeat="option in options">{{option}}</div>';

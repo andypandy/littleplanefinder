@@ -10,6 +10,9 @@ div(ng-controller="PlaneCtrl", ng-init="search()")
     .clr
 
     #search-criteria
+        h4 Search criteria
+        a(href="#", ng-click="toggleShowAllPlanes()") {{showAllPlanesText}}
+        .clr
         .form-group(ng-repeat="searchField in searchFields")
             div(ng-switch="searchField.type")
                 div(ng-switch-when="string")
@@ -21,9 +24,7 @@ div(ng-controller="PlaneCtrl", ng-init="search()")
 
         .clr
 
-        h4 Search criteria
-        a(href="#", ng-click="toggleShowAllPlanes()") {{showAllPlanesText}}
-        .clr
+        hr
 
         .form-group
             label Make

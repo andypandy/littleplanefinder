@@ -19,8 +19,10 @@ angular.module('myApp.controllers', []).
         }
       }
     });
+
     console.log($scope);
-    //$scope.cruiseSpeedKts = {};
+
+
 
     //Search page (find all planes)
     $scope.search = function() {
