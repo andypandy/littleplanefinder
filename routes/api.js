@@ -48,3 +48,29 @@ exports.updatePlane = function(req, res) {
 
 
 
+//Deletes planes
+exports.deletePlane = function(req, res) {
+  /*console.log(req.plane);
+  var plane = req.plane;
+  plane.remove(function(err) {
+    if(err) {
+       console.log(err);
+    } else {
+      console.log('Plane deleted: ' + plane.make + ' ' + plane.model);
+      res.send(200);
+    }
+
+  });*/
+
+  Plane.remove({_id: req.params.planeId}, function(err) {
+    if(err) {
+      console.log(err);
+    } else {
+      console.log('Plane deleted: _id : ' + req.params.planeId);
+      res.send(200);
+    }
+  });
+};
+
+
+

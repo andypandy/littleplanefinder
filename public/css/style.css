@@ -101,6 +101,7 @@ table#search-table {
 	border-spacing: 0px;
     border-collapse: separate;
     font-size: 12px;
+    cursor: pointer;
 }
 
 table#search-table th {
@@ -116,7 +117,6 @@ table#search-table thead th, table#search-table tbody tr td {
 
 table#search-table tbody {
 	white-space: nowrap;
-	cursor: pointer;
 }
 
 table#search-table tbody tr:hover, table#search-table tbody tr.hover  {

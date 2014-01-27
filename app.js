@@ -39,7 +39,8 @@ app.get('/partial/:name', routes.partial);
 // JSON API
 app.get('/api/v1/planes', api.findPlanes);
 app.post('/api/v1/planes', api.createPlane);
-app.put('/api/v1/plane/:id', api.updatePlane);
+app.put('/api/v1/planes/:planeId', api.updatePlane);
+app.del('/api/v1/planes/:planeId', api.deletePlane);
 
 //Reroute everything else to angular
 app.get('*', routes.index);

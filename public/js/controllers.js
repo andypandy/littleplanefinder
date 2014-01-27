@@ -7,6 +7,8 @@ angular.module('myApp.controllers', []).
     //
   }]).
   controller('PlaneCtrl', ['$scope', '$http', 'Planes', 'SearchFields', function($scope, $http, Planes, SearchFields) {
+    
+    //Setup search fields and placeholder $scope vars for filtering
     $scope.searchFields = SearchFields;
     $scope.searchFields.forEach(function(item, index) {
       if(item.field != '' && item.type != '') {
@@ -20,9 +22,6 @@ angular.module('myApp.controllers', []).
       }
     });
 
-    console.log($scope);
-    $scope.make = 'Piper';
-
 
 
     //Search page (find all planes)
@@ -33,6 +32,13 @@ angular.module('myApp.controllers', []).
       $scope.$watch('showAllPlanes', function() {
         $scope.showAllPlanesText = $scope.showAllPlanes ? 'Rehide hidden planes' : 'Show hidden planes';
       });
+
+
+      //Default sort options
+      $scope.sort = {
+        column: ['make', 'model'],
+        descending: false
+      };
 
 
       //Get planes from Planes service
@@ -67,6 +73,18 @@ angular.module('myApp.controllers', []).
       };
 
 
+      //Change sort column/change sort direction
+      $scope.changeSort = function(field) {
+        if($scope.sort.column == field) {
+          $scope.sort.descending = !$scope.sort.descending;
+        } else {
+          $scope.sort.column = field;
+          $scope.sort.descending = false;
+        }
+      };
+
+
+      //Helpers that add 
       //Returns fullFuelUsableWeight for a plane
       //Gross weight - weight of fuel - empty weight = full fuel usable weight
       //weight of fuel = gallons of fuel * 6 lbs
@@ -107,6 +125,44 @@ angular.module('myApp.controllers', []).
     };
 
 
+    //Delete a plane
+    $scope.removePlane = function(plane) {
+      //Call $remove from (ngresourse)
+      plane.$remove();
+      
+      //Remove from current $scope
+      for (var i in $scope.planes) {
+          if ($scope.planes[i] === plane) {
+              $scope.planes.splice(i, 1);
+          }
+      }
+    };
+
+/*
+    //Delete a plane
+    $scope.delete = function(plane) {
+      Plane.delete({}, {}, function() {});
+    };
+*/
+
+
+   $scope.remove = function(article) {
+        if (article) {
+            article.$remove();
+
+            for (var i in $scope.articles) {
+                if ($scope.articles[i] === article) {
+                    $scope.articles.splice(i, 1);
+                }
+            }
+        }
+        else {
+            $scope.article.$remove();
+            $location.path('articles');
+        }
+    };
+
+
 
 
 
@@ -132,8 +188,10 @@ angular.module('myApp.controllers', []).
           
           //Text string searches
           if(searchField.type == 'string') {
-            if(plane[searchField.field].toLowerCase().indexOf($scope[searchField.field].toLowerCase()) == -1) {
-              ret = false;
+            if(plane[searchField.field] != undefined) {
+              if(plane[searchField.field].toLowerCase().indexOf($scope[searchField.field].toLowerCase()) == -1) {
+                ret = false;
+              }
             }
 
           //Select dropdowns

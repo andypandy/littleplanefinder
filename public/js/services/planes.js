@@ -1,6 +1,12 @@
 angular.module('myApp.services', []).
   service('Planes', ['$resource', function($resource) {
-    return $resource('/api/v1/planes', {});
+    return $resource('api/v1/planes/:planeId', {
+      planeId: '@_id'
+    }, {
+        update: {
+            method: 'PUT'
+        }
+    });
   }]).
 
 
@@ -12,7 +18,7 @@ angular.module('myApp.services', []).
       visible: true
     }, {
       label: 'Model', //1
-      field: '',
+      field: 'model',
       type: 'string',
       visible: true
     }, {
@@ -94,14 +100,15 @@ angular.module('myApp.services', []).
       field: 'emptyWeightPounds',
       type: 'numeric',
       visible: true
-    }, {
+    },
+     {
       label: 'Usable Weight (lbs.)', //14
-      field: 'usableWeightPounds',
+      field: 'usableWeight',
       type: 'numeric',
       visible: true
     }, {
       label: 'Full Fuel Usable Weight (lbs.)', //15
-      field: 'fullFuelUsableWeightPounds',
+      field: 'fullFuelUsableWeight',
       type: 'numeric',
       visible: true
     }, {
