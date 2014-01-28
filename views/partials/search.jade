@@ -83,14 +83,12 @@ div(ng-controller="PlaneCtrl", ng-init="search()")
             thead
                 tr
                     th
-                    th Delete
                     th(ng-repeat="field in searchFields", ng-show="field.visible", ng-click="changeSort(field.field)") {{field.label}}
 
             tbody
                 tr(ng-repeat="plane in planes | orderBy:sort.column:sort.descending | filter:searchFieldFilter| filter:hiddenFilter", class="{{plane.hidden == true ? 'hidden-plane' : ''}}")
                     td.jqIgnore
                         span(ng-click="toggleHidden(plane)", class="glyphicon {{plane.hidden == true ? 'glyphicon-plus-sign' : 'glyphicon-minus-sign'}}")
-                    td(ng-click="removePlane(plane)") Delete
                     td(ng-repeat="field in searchFields", ng-show="field.visible") {{plane[field.field]}}
 
 
