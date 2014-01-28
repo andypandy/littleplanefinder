@@ -3,6 +3,7 @@ div(ng-controller="PlaneCtrl", ng-init="search()")
 
     #search-fields
         h4 Fields to show
+        #actual-search-fields(ng-show="showSearchFields")
         .search-field(ng-repeat="field in searchFields")
             input(type="checkbox", ng-model="field['visible']")
             Label {{field['label']}}
