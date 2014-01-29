@@ -55,9 +55,6 @@ h4 {
 	padding: 10px;
 	margin-bottom: 20px;
 	display: inline-block;
-}
-
-#search-fields {
 	width: 850px;
 }
 
@@ -82,9 +79,9 @@ h4 {
 .form-group {
 	display: inline-block;
 	float: left;
-	margin-right: 10px;
+	margin-right: 15px;
 	margin-bottom: 5px;
-	width: 175px;
+	width: 195px;
 }
 
 .form-group label {
