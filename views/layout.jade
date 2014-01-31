@@ -9,10 +9,10 @@ html(ng-app="myApp")
         link(rel='stylesheet', href='/css/style.css')
     body
 
-        header
+        header(ng-controller="UserCtrl")
             <img src="/img/littleplanefindercom.png" />
             <!-- h1#brand littleplanefinder.com -->
-
+            a(href="#", ng-click="login()") Login
         .clr
 
         block content

@@ -9,6 +9,7 @@ var routes = require('./routes');
 var api = require('./routes/api');
 var http = require('http');
 var path = require('path');
+var passport = require('passport');
 
 var app = express();
 

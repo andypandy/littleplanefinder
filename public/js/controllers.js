@@ -6,6 +6,13 @@ angular.module('myApp.controllers', []).
   controller('AppCtrl', [function() {
     //
   }]).
+
+  controller('UserCtrl', ['$scope', function($scope) {
+    $scope.login = function() {
+      console.log('login');
+    }
+  }]).
+
   controller('PlaneCtrl', ['$scope', '$http', 'Planes', 'SearchFields', function($scope, $http, Planes, SearchFields) {
     
     //Setup search fields and placeholder $scope vars for filtering
