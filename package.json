@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node app.js"
   },
+  engine: "0.10.21",
   "dependencies": {
     "express": "3.3.8",
     "jade": "*",
