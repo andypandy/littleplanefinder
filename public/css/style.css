@@ -49,6 +49,14 @@ h4 {
 	margin: 0 0 10px;
 }
 
+footer #login_container input, footer #login_container a {
+	margin-right: 20px;
+}
+
+
+
+/* /search */
+
 #search-fields, #search-criteria {
 	border: 1px solid #ccc;
 	background: #ededed;

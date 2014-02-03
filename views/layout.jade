@@ -19,21 +19,22 @@ html(ng-app="myApp")
 
         footer(ng-controller="UserCtrl")
             p. 
-                &copy; 2014 littleplanefinder.com. All rights reserved. 
+                &copy; 2014 Littleplanefinder.com. All rights reserved. 
                 Littleplanefinder.com is open source. <a href="https://github.com/andypandy/littleplanefinder" target="_blank">Check it out on GitHub</a>.
                 <a href="#" ng-click="toggleShowLoginForm()">Admin</a>.
 
             #login_container(ng-show="showLoginForm")
                 if user
-                    a(href="#", ng-click="logout()") Logout
+                    a(href="/") Search
                     a(href="/create") Create a plane
+                    a(href="#", ng-click="logout()") Logout
                 else
                     form(ng-submit="login()")
                         label Email: 
-                        input(type="text", ng-model="loginFormData.email", style="margin-right: 20px;")
+                        input(type="text", ng-model="loginFormData.email")
                         label Password: 
-                        input(type="password", ng-model="loginFormData.password", style="margin-right: 20px;")
-                        input(type="submit", value="Login", style="margin-right: 20px;") 
+                        input(type="password", ng-model="loginFormData.password")
+                        input(type="submit", value="Login") 
                         {{ loginErrorMessage }}
 
 
