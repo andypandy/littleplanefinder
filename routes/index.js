@@ -11,5 +11,13 @@ exports.index = function(req, res){
 
 exports.partial = function (req, res) {
   var name = req.params.name;
-  res.render('partials/' + name);
+  var requiresLogin = ['create']; //Array of partial names that need login
+
+  if(requiresLogin.indexOf(name) != -1 && req.isAuthenticated() == false) {
+	  res.render('partials/notAllowed');
+  } else {
+	  res.render('partials/' + name, {
+	  	user: req.user != undefined
+	  });
+  }
 };

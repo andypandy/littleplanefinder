@@ -14,12 +14,9 @@ angular.module('myApp', [
     /*when('/signup', {
       templateUrl: 'partial/signup'
     }).*/
-    when('/login', {
-      templateUrl: 'partial/login'
-    }).
-    /*when('/create', {
+    when('/create', {
       templateUrl: 'partial/create'
-    }).
+    })./*
     when('/happy', {
     	templateUrl: 'partial/happy'
     }).*/

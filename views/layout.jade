@@ -26,6 +26,7 @@ html(ng-app="myApp")
             #login_container(ng-show="showLoginForm")
                 if user
                     a(href="#", ng-click="logout()") Logout
+                    a(href="/create") Create a plane
                 else
                     form(ng-submit="login()")
                         label Email: 
