@@ -8,7 +8,16 @@ angular.module('myApp.controllers', []).
   }]).
 
   controller('UserCtrl', ['$scope', '$http', function($scope, $http) {
+    $scope.showLoginForm = false;
     $scope.loginFormData = {};
+
+    $scope.toggleShowLoginForm = function() {
+      if($scope.showLoginForm == true) {
+        $scope.showLoginForm = false;
+      } else {
+        $scope.showLoginForm = true;
+      }
+    };
 
 
     $scope.login = function() {

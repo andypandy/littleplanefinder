@@ -13,10 +13,10 @@ angular.module('myApp', [
     }).
     /*when('/signup', {
       templateUrl: 'partial/signup'
-    }).
+    }).*/
     when('/login', {
       templateUrl: 'partial/login'
-    }).*/
+    }).
     /*when('/create', {
       templateUrl: 'partial/create'
     }).
