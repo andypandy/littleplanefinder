@@ -11,12 +11,12 @@ angular.module('myApp', [
     when('/', {
     	templateUrl: 'partial/search'
     }).
-    when('/signup', {
+    /*when('/signup', {
       templateUrl: 'partial/signup'
     }).
     when('/login', {
       templateUrl: 'partial/login'
-    }).
+    }).*/
     /*when('/create', {
       templateUrl: 'partial/create'
     }).
