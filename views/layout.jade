@@ -12,7 +12,21 @@ html(ng-app="myApp")
         header(ng-controller="UserCtrl")
             <img src="/img/littleplanefindercom.png" />
             <!-- h1#brand littleplanefinder.com -->
-            a(href="#", ng-click="login()") Login
+            if user
+                a(href="#", ng-click="logout()") Logout
+            else
+                form(ng-submit="login()")
+                    label Email: 
+                    input(type="text", ng-model="loginFormData.email")
+                    br
+
+                    label Password: 
+                    input(type="password", ng-model="loginFormData.password")
+
+                    input(type="submit", value="Login")
+
+                {{ loginErrorMessage }}
+            
         .clr
 
         block content

@@ -7,12 +7,33 @@ angular.module('myApp.controllers', []).
     //
   }]).
 
-  controller('UserCtrl', ['$scope', function($scope) {
+  controller('UserCtrl', ['$scope', '$http', function($scope, $http) {
+    $scope.loginFormData = {};
+
+
     $scope.login = function() {
-      console.log('login');
-    }
+      $http({
+        method: 'POST',
+        url: '/login',
+        data: $scope.loginFormData,
+      })
+      .success(function(data) {
+        if(data.success == 1) {
+          window.location.reload();
+        } else {
+          $scope.loginErrorMessage = data.message;
+        }
+      });
+    };
+
+
+    $scope.logout = function() {
+      window.location.href = '/logout';
+    };
   }]).
 
+
+  //Planes!
   controller('PlaneCtrl', ['$scope', '$http', 'Planes', 'SearchFields', function($scope, $http, Planes, SearchFields) {
     
     //Setup search fields and placeholder $scope vars for filtering

@@ -56,7 +56,7 @@ UserSchema.methods = {
 };
 
 
-mongoose.modal('User', UserSchema);
+mongoose.model('User', UserSchema);
 
 
 
