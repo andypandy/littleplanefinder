@@ -27,6 +27,11 @@ angular.module('myApp.services', []).
       type: 'string',
       visible: true
     }, {
+      label: 'POH',
+      field: 'poh',
+      type: 'file_with_preview',
+      visible: true
+    }, {
       label: 'Cruise Speed (kts.)', //3
       field: 'cruiseSpeedKts',
       type: 'numeric',

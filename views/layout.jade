@@ -1,5 +1,5 @@
 doctype html
-html(ng-app="myApp")
+html
     head
         meta(charset='utf8')
         title Littleplanefinder.com
@@ -31,7 +31,7 @@ html(ng-app="myApp")
                 else
                     form(ng-submit="login()")
                         label Email: 
-                        input(type="text", ng-model="loginFormData.email")
+                        input(type="text", ng-model="loginFormData.email")#login-email
                         label Password: 
                         input(type="password", ng-model="loginFormData.password")
                         input(type="submit", value="Login") 
@@ -49,6 +49,7 @@ html(ng-app="myApp")
         script(src='/js/directives.js')
         script(src='/js/controllers.js')
         script(src="/js/main.js")
+        script(src="/js/init.js")
 
         script.
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

@@ -68,6 +68,7 @@ var PlaneSchema = mongoose.Schema({
   model:                String,
   modelNumber:          String,
   modelNumberSpecific:  String,
+  poh:                  String,
   cruiseSpeedKts:       Number,
   topSpeedKts:          Number,
   stallSpeedDirtyKts:   Number,

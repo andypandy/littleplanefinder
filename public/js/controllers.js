@@ -3,9 +3,6 @@
 /* Controllers */
 
 angular.module('myApp.controllers', []).
-  controller('AppCtrl', [function() {
-    //
-  }]).
 
   controller('UserCtrl', ['$scope', '$http', function($scope, $http) {
     $scope.showLoginForm = false;
@@ -43,7 +40,7 @@ angular.module('myApp.controllers', []).
 
 
   //Planes!
-  controller('PlaneCtrl', ['$scope', '$http', 'Planes', 'SearchFields', function($scope, $http, Planes, SearchFields) {
+  controller('PlaneCtrl', ['$scope', '$routeParams', '$location', '$http', 'Planes', 'SearchFields', function($scope, $routeParams, $location, $http, Planes, SearchFields) {
     
     //Setup search fields and placeholder $scope vars for filtering
     $scope.searchFields = SearchFields;
@@ -58,6 +55,19 @@ angular.module('myApp.controllers', []).
         }
       }
     });
+
+
+
+    $scope.editPlane = function() {
+      $scope.plane = {"make":"cessna"};
+      //console.log($routeParams);
+      /*Planes.get({
+        planeId: $routeParams.planeId
+      }, function(plane) {
+        $scope.plane = plane;
+      });*/
+    };
+
 
 
 
@@ -121,6 +131,13 @@ angular.module('myApp.controllers', []).
       };
 
 
+      $scope.previewFile = function(url) {
+        if(url != undefined) {
+          console.log('Open preview: ' + url);
+        }
+      };
+
+
       //Helpers that add 
       //Returns fullFuelUsableWeight for a plane
       //Gross weight - weight of fuel - empty weight = full fuel usable weight
@@ -162,6 +179,7 @@ angular.module('myApp.controllers', []).
     };
 
 
+
     //Delete a plane
     $scope.removePlane = function(plane) {
       //Call $remove from (ngresourse)
@@ -174,31 +192,6 @@ angular.module('myApp.controllers', []).
           }
       }
     };
-
-/*
-    //Delete a plane
-    $scope.delete = function(plane) {
-      Plane.delete({}, {}, function() {});
-    };
-*/
-
-
-   $scope.remove = function(article) {
-        if (article) {
-            article.$remove();
-
-            for (var i in $scope.articles) {
-                if ($scope.articles[i] === article) {
-                    $scope.articles.splice(i, 1);
-                }
-            }
-        }
-        else {
-            $scope.article.$remove();
-            $location.path('articles');
-        }
-    };
-
 
 
 
@@ -217,8 +210,6 @@ angular.module('myApp.controllers', []).
     //Filter: for search fields
     $scope.searchFieldFilter = function(plane) {
       var ret = true;
-      //console.log($scope.gear);
-
       
       $scope.searchFields.forEach(function(searchField, index) {
         if(searchField.field) {

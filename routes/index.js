@@ -11,7 +11,7 @@ exports.index = function(req, res){
 
 exports.partial = function (req, res) {
   var name = req.params.name;
-  var requiresLogin = ['create']; //Array of partial names that need login
+  var requiresLogin = ['create', 'edit']; //Array of partial names that need login
 
   if(requiresLogin.indexOf(name) != -1 && req.isAuthenticated() == false) {
 	  res.render('partials/notAllowed');

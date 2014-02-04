@@ -1,26 +1,29 @@
 // Declare app level module which depends on filters, and services
 angular.module('myApp', [
+  'ngResource',
 	'ngRoute',
-	'ngResource',
 	'myApp.services',
   'myApp.directives',
 	'myApp.controllers'
   ]).
-  config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+
+  config(['$routeProvider', function($routeProvider) {
     $routeProvider.
     when('/', {
     	templateUrl: 'partial/search'
+    }).
+    when('/planes/:planeId', {
+      templateUrl: 'partial/edit'
     }).
     /*when('/signup', {
       templateUrl: 'partial/signup'
     }).*/
     when('/create', {
       templateUrl: 'partial/create'
-    })./*
-    when('/happy', {
-    	templateUrl: 'partial/happy'
-    }).*/
+    }).
    	otherwise({redirectTo: '/'});
+  }])
 
+  .config(['$locationProvider', function($locationProvider) {
     $locationProvider.html5Mode(true);
   }]);

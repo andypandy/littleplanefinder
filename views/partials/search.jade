@@ -85,6 +85,7 @@ div(ng-controller="PlaneCtrl", ng-init="search()")
                     th
                     if user
                         th Delete
+                        th Edit
                     th(ng-repeat="field in searchFields", ng-show="field.visible", ng-click="changeSort(field.field)") {{field.label}}
 
             tbody
@@ -93,7 +94,14 @@ div(ng-controller="PlaneCtrl", ng-init="search()")
                         span(ng-click="toggleHidden(plane)", class="glyphicon {{plane.hidden == true ? 'glyphicon-plus-sign' : 'glyphicon-minus-sign'}}")
                     if user 
                         td(ng-click="removePlane(plane)") Delete
-                    td(ng-repeat="field in searchFields", ng-show="field.visible") {{plane[field.field]}}
+                        td
+                            a(href="/planes/{{plane._id}}") Edit
+                    td(ng-repeat="field in searchFields", ng-show="field.visible", ng-switch="field.type") 
+                        span(ng-switch-when="numeric") {{plane[field.field] | number}}
+                        span(ng-switch-when="file_with_preview")
+                            span(ng-click="previewFile(plane[field.field])", class="{{plane[field.field] == null || plane[field.field] == '' ? 'glyphicon glyphicon-remove' : 'glyphicon glyphicon-zoom-in'}}")
+                        span(ng-switch-default) {{plane[field.field]}}
+
 
 
 
