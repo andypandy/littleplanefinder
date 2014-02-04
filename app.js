@@ -11,6 +11,7 @@ var api = require('./routes/api');
 var http = require('http');
 var path = require('path');
 var passport = require('passport');
+var authorization = require('./authorization');
 
 require('./passport.js')(passport);
 
@@ -45,7 +46,7 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 
 //User login/signup
-app.post('/signup', user.signup);
+//app.post('/signup', user.signup);
 app.post('/login', user.login);
 app.get('/logout', user.logout);
 
@@ -54,10 +55,10 @@ app.get('/partial/:name', routes.partial);
 
 // JSON API
 app.get('/api/v1/planes', api.findPlanes);
-app.post('/api/v1/planes', api.createPlane);
+app.post('/api/v1/planes', authorization.requiresLogin, api.createPlane);
 app.get('/api/v1/planes/:planeId', api.findOnePlane);
-app.put('/api/v1/planes/:planeId', api.updatePlane);
-app.del('/api/v1/planes/:planeId', api.deletePlane);
+app.put('/api/v1/planes/:planeId', authorization.requiresLogin, api.updatePlane);
+app.del('/api/v1/planes/:planeId', authorization.requiresLogin, api.deletePlane);
 
 //Reroute everything else to angular
 app.get('*', routes.index);
