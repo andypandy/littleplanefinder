@@ -142,6 +142,16 @@ angular.module('myApp.controllers', []).
       $scope.previewFile = function(url) {
         if(url != undefined) {
           console.log('Open preview: ' + url);
+          
+          var height = $(window).height()-40;
+          var width = $(window).width();
+          width = width-(width*.3);
+
+          var html = '<iframe src="http://docs.google.com/viewer?url=' + url + '&embedded=true" width="'+width+'" height="'+height+'" style="border: none;"></iframe>';
+          modal.fill(html);
+          modal.resize();
+          modal.open();
+          //<iframe src="http://docs.google.com/viewer?url=http%3A%2F%2Fmrwebman.com%2Faviation%2Fcessna%2Fmanuals%2F182_poh_66.pdf&embedded=true" width="600" height="780" style="border: none;"></iframe>
         }
       };
 

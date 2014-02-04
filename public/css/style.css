@@ -4,6 +4,10 @@ body {
 	margin: 0;
 }
 
+body.modal-open {
+    overflow: hidden;
+}
+
 a {
   color: #00B7FF;
 }
@@ -31,6 +35,38 @@ footer p {
 .clr {
 	clear: both;
 }
+
+.modal {
+    padding: 10px;
+	position: fixed;
+	top: 10px;
+	left: 50%;
+	z-index: 1050;
+	width: 800px;
+	margin-left: -400px;
+	background-color: #FFF;
+}
+
+.modal td {
+    padding: 3px;
+}
+
+.modal h2 {
+    font-weight: normal;
+    font-size: 36px;
+    margin: 0 0 20px;
+}
+
+.blackbox {
+    display:none;
+    z-index: 100;
+    height: 100%; 
+    width: 100%; 
+    margin-bottom:20px; 
+    background: url('/img/blackbox.png'); 
+    position: absolute; 
+    top: 0; 
+    left: 0;}
 
 h1 {
 	color: #222;
