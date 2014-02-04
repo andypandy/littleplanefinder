@@ -2,7 +2,7 @@ var modal = new Modal();
 
 $(function() {
 	$('body').on('click', '#search-table tbody tr td', function() {
-		if(!$(this).hasClass('jqIgnore')) {
+		if(!$(this).hasClass('jqIgnore') && !$(this).children('span').hasClass('jqIgnore')) {
 			if($(this).parent('tr').hasClass('hover')) {
 				$(this).parent('tr').removeClass('hover');
 			} else {

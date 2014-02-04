@@ -98,7 +98,7 @@ div(ng-controller="PlaneCtrl", ng-init="search()")
                             a(href="/#!/planes/{{plane._id}}") Edit
                     td(ng-repeat="field in searchFields", ng-show="field.visible", ng-switch="field.type") 
                         span(ng-switch-when="numeric") {{plane[field.field] | number}}
-                        span(ng-switch-when="file_with_preview")
+                        span(ng-switch-when="file_with_preview", class="jqIgnore")
                             span(ng-click="previewFile(plane[field.field])", class="{{plane[field.field] == null || plane[field.field] == '' ? 'glyphicon glyphicon-remove' : 'glyphicon glyphicon-zoom-in'}}")
                         span(ng-switch-default) {{plane[field.field]}}
 
