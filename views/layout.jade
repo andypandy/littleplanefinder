@@ -26,7 +26,7 @@ html
             #login_container(ng-show="showLoginForm")
                 if user
                     a(href="/") Search
-                    a(href="/create") Create a plane
+                    a(href="/#!/create") Create a plane
                     a(href="#", ng-click="logout()") Logout
                 else
                     form(ng-submit="login()")
@@ -38,9 +38,9 @@ html
                         {{ loginErrorMessage }}
 
 
-        script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js")
+        script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.js")
 
-        script(src='/js/lib/angular/angular.js')
+        script(src='/js/lib/angular/angular.min.js')
         script(src='/js/lib/angular/angular-resource.js')
         script(src='/js/lib/angular/angular-route.js')
 

@@ -3,7 +3,7 @@ angular.module('myApp.services', []).
     return $resource('api/v1/planes/:planeId', {
       planeId: '@_id'
     }, {
-        update: {
+        'update': {
             method: 'PUT'
         }
     });

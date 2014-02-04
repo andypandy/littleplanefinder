@@ -13,11 +13,8 @@ angular.module('myApp', [
     	templateUrl: 'partial/search'
     }).
     when('/planes/:planeId', {
-      templateUrl: 'partial/edit'
+      templateUrl: 'partial/edit',
     }).
-    /*when('/signup', {
-      templateUrl: 'partial/signup'
-    }).*/
     when('/create', {
       templateUrl: 'partial/create'
     }).
@@ -25,5 +22,6 @@ angular.module('myApp', [
   }])
 
   .config(['$locationProvider', function($locationProvider) {
-    $locationProvider.html5Mode(true);
+    $locationProvider.html5Mode(false);
+    $locationProvider.hashPrefix('!');
   }]);

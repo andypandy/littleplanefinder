@@ -1,12 +1,12 @@
 div(ng-controller="PlaneCtrl", ng-init="editPlane()")
     h1 Update a plane in the system
 
-    form(ng-submit="update()")
+    form(ng-submit="updatePlane()")
         div
             input(placeholder="Make", ng-model="plane.make", required)
 
         div
-            input(placeholder="Model", ng-model="plane.model", required)
+            input(placeholder="Model", ng-model="plane.model")
 
         div
             input(placeholder="Model No.", ng-model="plane.modelNumber")

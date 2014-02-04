@@ -15,6 +15,15 @@ exports.findPlanes = function (req, res) {
 };
 
 
+exports.findOnePlane = function (req, res) {
+  Plane.findOne({_id: req.params.planeId}, function(err, plane) {
+    if (err) console.log(err);
+
+    res.json(plane);
+  });
+};
+
+
 //Create plane
 exports.createPlane = function (req, res) {
   var plane = new Plane(req.body);
@@ -34,16 +43,35 @@ exports.createPlane = function (req, res) {
 //Update plane
 exports.updatePlane = function(req, res) {
   //req.param.id
-  var plane = req.plane;
-  plane.save(function(err) {
+  var id = req.body._id;
+  delete req.body._id;  
+
+  Plane.update({_id: id}, {$set: req.body}, function(err) {
+    if(err) {
+      console.log(err);
+    } else {
+      console.log('Plane updated: ' + req.body.make + ' ' + req.body.model);
+      res.send(200);
+    }
+  });
+
+
+/*
+
+  var plane = new Plane(req.body);
+
+
+  plane.update(function(err) {
     if(err) {
       console.log(err); 
+      res.send(500);
     } else {
       console.log('Plane updated: ' + plane.make + ' ' + plane.model);
       console.log(plane);
       res.send(200);
     }
   });
+*/
 };
 
 

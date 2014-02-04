@@ -55,6 +55,7 @@ app.get('/partial/:name', routes.partial);
 // JSON API
 app.get('/api/v1/planes', api.findPlanes);
 app.post('/api/v1/planes', api.createPlane);
+app.get('/api/v1/planes/:planeId', api.findOnePlane);
 app.put('/api/v1/planes/:planeId', api.updatePlane);
 app.del('/api/v1/planes/:planeId', api.deletePlane);
 

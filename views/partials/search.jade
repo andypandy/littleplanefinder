@@ -95,7 +95,7 @@ div(ng-controller="PlaneCtrl", ng-init="search()")
                     if user 
                         td(ng-click="removePlane(plane)") Delete
                         td
-                            a(href="/planes/{{plane._id}}") Edit
+                            a(href="/#!/planes/{{plane._id}}") Edit
                     td(ng-repeat="field in searchFields", ng-show="field.visible", ng-switch="field.type") 
                         span(ng-switch-when="numeric") {{plane[field.field] | number}}
                         span(ng-switch-when="file_with_preview")

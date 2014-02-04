@@ -59,15 +59,23 @@ angular.module('myApp.controllers', []).
 
 
     $scope.editPlane = function() {
-      $scope.plane = {"make":"cessna"};
-      //console.log($routeParams);
-      /*Planes.get({
+      //$scope.plane = {"make":"cessna"};
+      console.log($routeParams);
+      Planes.get({
         planeId: $routeParams.planeId
       }, function(plane) {
         $scope.plane = plane;
-      });*/
+      });
     };
 
+
+    $scope.updatePlane = function() {
+      var plane = $scope.plane;
+      plane.$update(function(data) {
+        $scope.plane = {};
+        $location.path('#!/search');
+      });
+    };
 
 
 
