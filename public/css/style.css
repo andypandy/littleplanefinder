@@ -12,6 +12,11 @@ a {
   color: #00B7FF;
 }
 
+a img {
+	border: none;
+	border-style: none;
+}
+
 header {
 	padding: 30px;
 	display: inline-block;
@@ -87,6 +92,20 @@ h4 {
 
 footer #login_container input, footer #login_container a {
 	margin-right: 20px;
+}
+
+
+/* poh modal */
+.poh-ad-container {
+	height: 100px; 
+	margin: 0 auto;
+	text-align: center;
+}
+
+.poh-ad {
+	width: 400px;
+	height: 100px;
+	display: inline-block;
 }
 
 

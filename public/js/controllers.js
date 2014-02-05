@@ -143,11 +143,15 @@ angular.module('myApp.controllers', []).
         if(url != undefined) {
           console.log('Open preview: ' + url);
           
-          var height = $(window).height()-40;
+          var height = $(window).height()-40-100; //-40 for padding, -100 for ad
           var width = $(window).width();
           width = width-(width*.3);
 
-          var html = '<iframe src="http://docs.google.com/viewer?url=' + url + '&embedded=true" width="'+width+'" height="'+height+'" style="border: none;"></iframe>';
+          var html = '<div class="poh-ad-container">';
+          html += '<div class="poh-ad" style="float: left;"><a href="http://www.amazon.com/gp/product/B0011Z9PM2/ref=as_li_qf_sp_asin_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B0011Z9PM2&linkCode=as2&tag=woqu-20"><img src="img/ads/poh_ad_david_clark.png" /></a></div>';
+          html += '<div class="poh-ad" style="float: right;"><a href="http://www.amazon.com/gp/product/B0052ULBLK/ref=as_li_qf_sp_asin_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B0052ULBLK&linkCode=as2&tag=woqu-20"><img src="img/ads/poh_ad_lightspeed.png" /></a></div>';
+          html+= '</div>';
+          html += '<iframe src="http://docs.google.com/viewer?url=' + url + '&embedded=true" width="'+width+'" height="'+height+'" style="border: none;"></iframe>';
           modal.fill(html);
           modal.resize();
           modal.open();
