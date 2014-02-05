@@ -91,7 +91,7 @@ angular.module('myApp.controllers', []).
 
       //Default sort options
       $scope.sort = {
-        column: ['make', 'model'],
+        column: ['make', 'model', 'modelNo'],
         descending: false
       };
 
