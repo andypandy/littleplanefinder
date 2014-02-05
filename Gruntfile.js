@@ -4,6 +4,8 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
+    
+    //concatenate js and css
     concat: {
       js: {
         // the files to concatenate
@@ -24,6 +26,8 @@ module.exports = function(grunt) {
       }
     },
 
+    
+    //js min
     uglify: {
       options: {
         mangle: false,
@@ -47,8 +51,7 @@ module.exports = function(grunt) {
 
 
     //Removes temp folder
-    clean: ['temp'],
-
+    clean: ['temp']
   });
 
   //Load grunt plugin
