@@ -86,7 +86,7 @@ div(ng-controller="PlaneCtrl", ng-init="search()")
                     if user
                         th Delete
                         th Edit
-                    th(ng-repeat="field in searchFields", ng-show="field.visible", ng-click="changeSort(field.field)") {{field.label}}
+                    th(ng-repeat="field in searchFields", ng-show="field.visible", ng-click="changeSort(field.field)") {{field.label}} 
 
             tbody
                 tr(ng-repeat="plane in planes | orderBy:sort.column:sort.descending | filter:searchFieldFilter| filter:hiddenFilter", class="{{plane.hidden == true ? 'hidden-plane' : ''}}")

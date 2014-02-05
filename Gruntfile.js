@@ -51,7 +51,12 @@ module.exports = function(grunt) {
 
 
     //Removes temp folder
-    clean: ['temp']
+    clean: ['temp'],
+
+    watch: {
+      files: ['public/js/*.js', 'public/css/*.css', 'views/*.jade'],
+      tasks: ['default']
+    },
   });
 
   //Load grunt plugin
@@ -59,8 +64,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 
   // Default task(s).
-  grunt.registerTask('default', ['concat', 'uglify', 'cssmin', 'clean']);
+  grunt.registerTask('default', ['concat', 'uglify', 'cssmin', 'clean', 'watch']);
 
 };

@@ -14,8 +14,9 @@ angular.module('myApp.services', []).
     var searchFields = [{
       label: 'Make', //0
       field: 'make',
+      tooltip: 'Cool tooltip',
       type: 'string',
-      visible: true
+      visible: true,
     }, {
       label: 'Model', //1
       field: 'model',

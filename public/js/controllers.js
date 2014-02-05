@@ -47,7 +47,7 @@ angular.module('myApp.controllers', []).
     $scope.searchFields.forEach(function(item, index) {
       if(item.field != '' && item.type != '') {
         if(item.type == 'numeric') {
-          $scope[item.field] = {};    
+          $scope[item.field] = {}; 
         }
 
         if(item.type == 'select' || item.type == 'string') {
