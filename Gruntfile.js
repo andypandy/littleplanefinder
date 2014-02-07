@@ -54,7 +54,7 @@ module.exports = function(grunt) {
     clean: ['temp'],
 
     watch: {
-      files: ['public/js/*.js', 'public/css/*.css', 'views/*.jade'],
+      files: ['public/js/*.js', 'public/css/*.css', 'views/**/*.jade'],
       tasks: ['default']
     },
   });
