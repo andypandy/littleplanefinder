@@ -1,5 +1,3 @@
-
-
 /* Controllers */
 
 angular.module('myApp.controllers', []).
@@ -8,6 +6,8 @@ angular.module('myApp.controllers', []).
     $scope.showLoginForm = false;
     $scope.loginFormData = {};
 
+
+    //Toggles show/hide login form/admin menu
     $scope.toggleShowLoginForm = function() {
       if($scope.showLoginForm == true) {
         $scope.showLoginForm = false;
@@ -17,6 +17,7 @@ angular.module('myApp.controllers', []).
     };
 
 
+    //Login form submit handler
     $scope.login = function() {
       $http({
         method: 'POST',
@@ -33,10 +34,13 @@ angular.module('myApp.controllers', []).
     };
 
 
+    //Logout - redirects to /logout
     $scope.logout = function() {
       window.location.href = '/logout';
     };
   }]).
+
+
 
 
   //Planes!
@@ -58,17 +62,7 @@ angular.module('myApp.controllers', []).
 
 
 
-    $scope.editPlane = function() {
-      //$scope.plane = {"make":"cessna"};
-      console.log($routeParams);
-      Planes.get({
-        planeId: $routeParams.planeId
-      }, function(plane) {
-        $scope.plane = plane;
-      });
-    };
-
-
+    //Edit plane page form submit handler
     $scope.updatePlane = function() {
       var plane = $scope.plane;
       plane.$update(function(data) {
@@ -79,88 +73,74 @@ angular.module('myApp.controllers', []).
 
 
 
+    //Toggle show all planes
+    $scope.toggleShowAllPlanes = function() {
+      $scope.showAllPlanes = $scope.showAllPlanes ? false : true;
+      //$scope.showAllPlanesText = $scope.showAllPlanes ? 'Rehide hidden planes' : 'Show hidden planes';
+    };
+
+
+
+    //Toggle an item hidden
+    $scope.toggleHidden = function(plane) {
+      plane.hidden = plane.hidden ? false : true;
+    };
+
+
+
+    //Change sort column/change sort direction
+    $scope.changeSort = function(field) {
+      if($scope.sort.column == field) {
+        $scope.sort.descending = !$scope.sort.descending;
+      } else {
+        $scope.sort.column = field;
+        $scope.sort.descending = false;
+      }
+    };
+
+
+
+    //Opens pdf in modal pdf previewer
+    $scope.previewFile = function(url) {
+      if(url != undefined) {
+        console.log('Open preview: ' + url);
+        
+        var height = $(window).height()-40-100; //-40 for padding, -100 for ad
+        var width = $(window).width();
+        width = width-(width*.3);
+
+        var html = '<div class="poh-ad-container">';
+        html += '<div class="poh-ad" style="float: left;"><a href="http://www.amazon.com/gp/product/B0011Z9PM2/ref=as_li_qf_sp_asin_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B0011Z9PM2&linkCode=as2&tag=woqu-20"><img src="img/ads/poh_ad_david_clark.png" /></a></div>';
+        html += '<div class="poh-ad" style="float: right;"><a href="http://www.amazon.com/gp/product/B0052ULBLK/ref=as_li_qf_sp_asin_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B0052ULBLK&linkCode=as2&tag=woqu-20"><img src="img/ads/poh_ad_lightspeed.png" /></a></div>';
+        html+= '</div>';
+        html += '<iframe src="http://docs.google.com/viewer?url=' + url + '&embedded=true" width="'+width+'" height="'+height+'" style="border: none;"></iframe>';
+        modal.fill(html);
+        modal.resize();
+        modal.open();
+        //<iframe src="http://docs.google.com/viewer?url=http%3A%2F%2Fmrwebman.com%2Faviation%2Fcessna%2Fmanuals%2F182_poh_66.pdf&embedded=true" width="600" height="780" style="border: none;"></iframe>
+      }
+    };
+
+
+
+    //Stuff for showing/hiding "hidden" planes
+    $scope.showAllPlanes = false;
+    $scope.$watch('showAllPlanes', function() {
+      $scope.showAllPlanesText = $scope.showAllPlanes ? 'Rehide hidden planes' : 'Show hidden planes';
+    });
+
+
+
+    //Default sort options
+    $scope.sort = {
+      column: ['make', 'model', 'modelNo'],
+      descending: false
+    };
+
+
+
     //Search page (find all planes)
     $scope.search = function() {
-      
-      //Stuff for showing/hiding "hidden" planes
-      $scope.showAllPlanes = false;
-      $scope.$watch('showAllPlanes', function() {
-        $scope.showAllPlanesText = $scope.showAllPlanes ? 'Rehide hidden planes' : 'Show hidden planes';
-      });
-
-
-      //Default sort options
-      $scope.sort = {
-        column: ['make', 'model', 'modelNo'],
-        descending: false
-      };
-
-
-      //Get planes from Planes service
-      Planes.query(function(planes) {
-        //Add display fields
-        planes.forEach(function(plane, index) {
-          planes[index].hidden = false;
-        });
-
-        //Add full fuel usable weight
-        addFullFuelUsableWeight(planes, function(updatedPlanes) {
-          planes = updatedPlanes;
-
-          //Add usable weight
-          addUsableWeight(planes, function(updatedPlanes) {
-            $scope.planes = updatedPlanes;
-          });
-        });
-      });
-
-
-      //Toggle show all planes
-      $scope.toggleShowAllPlanes = function() {
-        $scope.showAllPlanes = $scope.showAllPlanes ? false : true;
-        //$scope.showAllPlanesText = $scope.showAllPlanes ? 'Rehide hidden planes' : 'Show hidden planes';
-      };
-
-
-      //Toggle an item hidden
-      $scope.toggleHidden = function(plane) {
-        plane.hidden = plane.hidden ? false : true;
-      };
-
-
-      //Change sort column/change sort direction
-      $scope.changeSort = function(field) {
-        if($scope.sort.column == field) {
-          $scope.sort.descending = !$scope.sort.descending;
-        } else {
-          $scope.sort.column = field;
-          $scope.sort.descending = false;
-        }
-      };
-
-
-      $scope.previewFile = function(url) {
-        if(url != undefined) {
-          console.log('Open preview: ' + url);
-          
-          var height = $(window).height()-40-100; //-40 for padding, -100 for ad
-          var width = $(window).width();
-          width = width-(width*.3);
-
-          var html = '<div class="poh-ad-container">';
-          html += '<div class="poh-ad" style="float: left;"><a href="http://www.amazon.com/gp/product/B0011Z9PM2/ref=as_li_qf_sp_asin_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B0011Z9PM2&linkCode=as2&tag=woqu-20"><img src="img/ads/poh_ad_david_clark.png" /></a></div>';
-          html += '<div class="poh-ad" style="float: right;"><a href="http://www.amazon.com/gp/product/B0052ULBLK/ref=as_li_qf_sp_asin_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B0052ULBLK&linkCode=as2&tag=woqu-20"><img src="img/ads/poh_ad_lightspeed.png" /></a></div>';
-          html+= '</div>';
-          html += '<iframe src="http://docs.google.com/viewer?url=' + url + '&embedded=true" width="'+width+'" height="'+height+'" style="border: none;"></iframe>';
-          modal.fill(html);
-          modal.resize();
-          modal.open();
-          //<iframe src="http://docs.google.com/viewer?url=http%3A%2F%2Fmrwebman.com%2Faviation%2Fcessna%2Fmanuals%2F182_poh_66.pdf&embedded=true" width="600" height="780" style="border: none;"></iframe>
-        }
-      };
-
-
-      //Helpers that add 
       //Returns fullFuelUsableWeight for a plane
       //Gross weight - weight of fuel - empty weight = full fuel usable weight
       //weight of fuel = gallons of fuel * 6 lbs
@@ -183,8 +163,39 @@ angular.module('myApp.controllers', []).
 
         return callback(planes);
       }
+
+
+      //Get planes from Planes service
+      Planes.query(function(planes) {
+        //Add display fields
+        planes.forEach(function(plane, index) {
+          planes[index].hidden = false;
+        });
+
+        //Add full fuel usable weight
+        addFullFuelUsableWeight(planes, function(updatedPlanes) {
+          planes = updatedPlanes;
+
+          //Add usable weight
+          addUsableWeight(planes, function(updatedPlanes) {
+            $scope.planes = updatedPlanes;
+          });
+        });
+      });
     };
 
+
+
+    //Edit plane page init - gets one plane and prefills edit form
+    $scope.editPlane = function() {
+      //$scope.plane = {"make":"cessna"};
+      console.log($routeParams);
+      Planes.get({
+        planeId: $routeParams.planeId
+      }, function(plane) {
+        $scope.plane = plane;
+      });
+    };
 
 
 
@@ -221,13 +232,6 @@ angular.module('myApp.controllers', []).
     /*
      *  Filters
      */
-
-    //If its numeric, show a max and min
-
-    //If its text, show select
-
-    //if($scope['min' + field] && $scope.['min' + field] > plane[field]) {}
-
 
     //Filter: for search fields
     $scope.searchFieldFilter = function(plane) {
@@ -286,9 +290,5 @@ angular.module('myApp.controllers', []).
         return true;
       }
     };
-
-
-
-
 
   }]);
