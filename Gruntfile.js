@@ -54,8 +54,15 @@ module.exports = function(grunt) {
     clean: ['temp'],
 
     watch: {
-      files: ['public/js/*.js', 'public/css/*.css', 'views/*.jade'],
+      files: ['public/js/*.js', 'public/css/*.css', 'views/**/*.jade'],
       tasks: ['default']
+    },
+
+    karma: {
+      unit: {
+        configFile: 'karma.conf.js',
+        singleRun: true
+      },
     },
   });
 
@@ -65,8 +72,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-karma');
 
   // Default task(s).
-  grunt.registerTask('default', ['concat', 'uglify', 'cssmin', 'clean', 'watch']);
+  grunt.registerTask('default', ['concat', 'uglify', 'cssmin', 'clean', 'karma', 'watch']);
+  grunt.registerTask('test', ['karma']);
 
 };

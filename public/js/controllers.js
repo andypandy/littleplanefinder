@@ -189,7 +189,7 @@ angular.module('myApp.controllers', []).
     //Edit plane page init - gets one plane and prefills edit form
     $scope.editPlane = function() {
       //$scope.plane = {"make":"cessna"};
-      console.log($routeParams);
+      //console.log($routeParams);
       Planes.get({
         planeId: $routeParams.planeId
       }, function(plane) {
@@ -201,7 +201,7 @@ angular.module('myApp.controllers', []).
 
     //Create new plane (form submit handler)
     $scope.create = function() {
-      console.log('create 26');
+      //console.log('create 26');
       $http({method: 'POST', url: '/api/v1/planes', data: $scope.plane}).
         success(function(data, status, headers, config) {
           $scope.plane = {};

@@ -1,4 +1,4 @@
-angular.module('myApp.services', []).
+angular.module('myApp.services', ['ngResource']).
   service('Planes', ['$resource', function($resource) {
     return $resource('api/v1/planes/:planeId', {
       planeId: '@_id'
