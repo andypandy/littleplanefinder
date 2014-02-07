@@ -44,14 +44,18 @@ module.exports = function(grunt) {
     //css min
     cssmin: {
       minify: {
-        src: '<%= concat.css.dest %>',
+        //src: '<%= concat.css.dest %>',
+        src: 'temp/littleplanefinder.css',
         dest: 'public/css/style.min.css'
       }
     },
 
 
     //Removes temp folder
-    clean: ['temp'],
+    clean: {
+      before: ['public/css/style.min.css', 'public/js/littleplanefinder.min.js'],
+      after: ['temp']
+    },
 
     watch: {
       files: ['public/js/*.js', 'public/css/*.css', 'views/**/*.jade'],
@@ -59,9 +63,8 @@ module.exports = function(grunt) {
     },
 
     karma: {
-      unit: {
-        configFile: 'karma.conf.js',
-        singleRun: true
+      single: {
+        configFile: 'karma.conf.js'
       },
     },
   });
@@ -75,7 +78,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-karma');
 
   // Default task(s).
-  grunt.registerTask('default', ['concat', 'uglify', 'cssmin', 'clean', 'karma', 'watch']);
+  grunt.registerTask('default', ['clean:before', 'concat', 'uglify', 'cssmin', 'clean:after', 'watch']);
   grunt.registerTask('test', ['karma']);
 
 };

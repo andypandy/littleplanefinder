@@ -9,7 +9,7 @@ describe('controllers', function(){
     controller = $controller;
     routeParams = {};
     httpBackend = $httpBackend;
-    Planes = _Planes_;
+    Planes = _Planes_; 
   }));
 
 
