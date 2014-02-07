@@ -9,6 +9,12 @@ module.exports = function(config){
       'http://code.angularjs.org/1.2.9/angular-resource.min.js',
       'http://code.angularjs.org/1.2.9/angular-mocks.js',
       'public/js/littleplanefinder.min.js',
+      /*'public/js/main.js',
+      'public/js/app.js',
+      'public/js/services/planes.js',
+      'public/js/directives.js',
+      'public/js/controllers.js',
+      'public/js/init.js',*/
       'test/*.js'
     ],
 
@@ -30,6 +36,8 @@ module.exports = function(config){
     junitReporter : {
       outputFile: 'test_out/unit.xml',
       suite: 'unit'
-    }
+    },
+
+    reporters: ['progress']
 
 })}
